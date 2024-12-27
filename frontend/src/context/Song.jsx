@@ -106,6 +106,16 @@ export const SongProvider = ({ children }) => {
         }
     }
 
+    async function deleteAlbum(id) {
+        try {
+            const { data } = await axios.delete("/api/song/delete/" + id);
+            toast.success(data.message);
+            fetchAlbums();
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
+
     useEffect(() => {
         fetchSong();
         fetchAlbums();
@@ -163,6 +173,7 @@ export const SongProvider = ({ children }) => {
         albumSong,
         fetchSong,
         fetchAlbums,
+        deleteAlbum,
     }}>
         {children}
     </SongContext.Provider>

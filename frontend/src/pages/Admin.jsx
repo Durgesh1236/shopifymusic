@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 
 const Admin = () => {
   const { user } = UserData();
-  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong } = SongData();
+  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum } = SongData();
   const navigate = useNavigate();
 
   if (user && user.role !== "admin") {
@@ -56,6 +56,12 @@ const Admin = () => {
   const deleteHandler = (id) => {
     if(confirm("Are you sure you want to delete this song")){
       deleteSong(id);
+    }
+  }
+
+  const deleteAlbumHandler = (id) => {
+    if(confirm("Are you sure you want to delete this song")){
+      deleteAlbum(id);
     }
   }
 
@@ -159,6 +165,22 @@ const Admin = () => {
           {loading ? "Please Wait..." : "Add"}
         </button>
       </form>
+
+      {/* Album added list */}
+      <div className="mt-8">
+        <h3 className='text-xl font-semibold mb-4'>Added Albums</h3>
+        <div className="flex justify-center md:justify-start gap-2 items-center flex-wrap">
+          {
+            album && album.map((item,index)=>(
+              <div key={index} className="bg-[#181818] p-4 rounded-lg shadow-md">
+                <img src={item.thumbnail.url} alt="" className='mr-1 w-52 h-52'  />
+                <h4 className='text-lg font-bold'>{item.title}</h4>
+                <h4 className='text-sm text-gray-500'>{item.description}</h4>
+                <button onClick={()=>deleteAlbumHandler(item._id)} className='px-3 py-1 bg-red-500 text-white rounded'><MdDelete /></button>
+              </div>
+            ))}
+        </div>
+      </div>
 
       <div className="mt-8">
         <h3 className='text-xl font-semibold mb-4'>Added Songs</h3>
