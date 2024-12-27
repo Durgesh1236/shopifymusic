@@ -26,7 +26,7 @@ const Login = () => {
                 <label className='block text-sm font-medium mb-1'>
                     Email or Username
                 </label>
-                <input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder='Email or Username' value={email} className='auth-input' required />
+                <input type="email" onChange={(e)=>setEmail(e.target.value.toLowerCase())} placeholder='Email or Username' value={email} className='auth-input' required />
             </div>
 
             <div className="mb-4">
