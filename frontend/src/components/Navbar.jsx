@@ -5,7 +5,7 @@ import { UserData } from '../context/User';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {logoutUser} = UserData()
+  const {logoutUser, user} = UserData();
   return (
     <>
     <div className='w-full flex justify-between items-center font-semibold'>
@@ -26,7 +26,11 @@ const Navbar = () => {
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Music</p>
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Podcasts</p>
         <p onClick={()=>navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
-        <p onClick={()=>navigate("/admin")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>AdminPanel</p>
+        {
+             user && user.role === "admin" ? (
+              <p onClick={()=>navigate("/admin")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>AdminPanel</p>
+             ) : ""
+        }
       </div>
         </>
   )
