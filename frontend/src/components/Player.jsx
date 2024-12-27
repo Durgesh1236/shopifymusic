@@ -14,8 +14,8 @@ const Player = () => {
         fetchSingleSong();
     }, [selectedSong]);
 
-    const handlePlayPause = () =>{
-        if(isPlaying){
+    const handlePlayPause = () => {
+        if (isPlaying) {
             audioRef.current.pause();
         } else {
             audioRef.current.play();
@@ -29,9 +29,9 @@ const Player = () => {
         audioRef.current.volume = newVolume;
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const audio = audioRef.current;
-        if(!audio){
+        if (!audio) {
             return;
         }
         const handleLoadedMetaData = () => {
@@ -52,7 +52,7 @@ const Player = () => {
     }, [singlesong]);
 
     const handleProgressChange = (e) => {
-        const newTime = (e.target.value/100) * duration;
+        const newTime = (e.target.value / 100) * duration;
         audioRef.current.currentTime = newTime;
         setProgress(newTime);
     }
@@ -74,17 +74,17 @@ const Player = () => {
                     <div className='flex flex-col items-center gap-1 m-auto'>
                         {
                             singlesong && singlesong.audio && <>
-                            {
-                                isPlaying ? 
-                                <audio ref={audioRef} src={singlesong.audio.url} autoPlay/>
-                                :
-                                <audio ref={audioRef} src={singlesong.audio.url}/>
-                            }
+                                {
+                                    isPlaying ?
+                                        <audio ref={audioRef} src={singlesong.audio.url} autoPlay />
+                                        :
+                                        <audio ref={audioRef} src={singlesong.audio.url} />
+                                }
                             </>
                         }
 
                         <div className="w-full flex items-center font-thin text-green-400">
-                            <input type='range' min={"0"} max={"100"} className='progress-bar w-[120px] md:w-[300px]' value={(progress/duration)*100} onChange={handleProgressChange} />
+                            <input type='range' min={"0"} max={"100"} className='progress-bar w-[120px] md:w-[300px]' value={(progress / duration) * 100} onChange={handleProgressChange} />
                         </div>
                         <div className="flex justify-center items-center gap-4">
                             <span onClick={previousMusic} className='cursor-pointer'>
@@ -93,7 +93,7 @@ const Player = () => {
 
                             <button onClick={handlePlayPause} className='bg-white text-black rounded-full p-2'>
                                 {
-                                    isPlaying ? <FaPause/> : <FaPlay/>
+                                    isPlaying ? <FaPause /> : <FaPlay />
                                 }
                             </button>
                             <span onClick={nextMusic} className='cursor-pointer'>
