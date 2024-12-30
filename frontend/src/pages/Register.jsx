@@ -55,8 +55,9 @@ const Register = () => {
                     </button>
                 </form>
 
-                <div className="text-center mt-6">
-                    <Link to="/login" className="text-sm text-gray-400 hover:text-gray-300">Have account?</Link>
+                <div className="text-center mt-6 flex justify-center">
+                <p className="text-sm text-gray-400 pr-3">Already have account?</p>
+                    <Link to="/login" className="text-sm text-gray-400 hover:text-green-500 text-decoration-line: underline">Login Here</Link>
                 </div>
             </div>
         </div>

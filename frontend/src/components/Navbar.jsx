@@ -15,14 +15,14 @@ const Navbar = () => {
       </div>
 
       <div className='flex items-center gap-4'>
-          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>Explore Premium</p>
+          <p className='hover:bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>Explore Premium</p>
           <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='bg-white text-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>Install App</a>
           <p onClick={logoutUser} className='bg-white text-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>Logout</p>
         </div>
         </div>
 
         <div className='flex items-center gap-2 mt-4'>
-        <p onClick={()=>navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
+        <p onClick={()=>navigate("/")} className='bg-white hover:bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Music</p>
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Podcasts</p>
         <p onClick={()=>navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>

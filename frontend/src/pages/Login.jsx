@@ -45,8 +45,9 @@ const Login = () => {
             </button>
         </form>
 
-        <div className="text-center mt-6">
-            <Link to="/register" className="text-sm text-gray-400 hover:text-gray-300">don't have account?</Link>
+        <div className="text-center mt-6 flex justify-center">
+            <p className="text-sm text-gray-400 pr-3">don't have account?</p>
+            <Link to="/register" className="text-sm text-gray-400 hover:text-green-500 text-decoration-line: underline">Sign up for Shopify</Link>
         </div>
       </div>
     </div>
