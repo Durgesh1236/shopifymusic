@@ -23,7 +23,7 @@ const port = process.env.PORT
 //using middlewares
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({ credentials: true}));
+
 //import routes
 app.use("/api/user", userRoutes);
 app.use("/api/song", songRoutes);

@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
 
       <div className='flex items-center gap-4'>
-          <p className='hover:bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>Explore Premium</p>
+          <p className='bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer'>Explore Premium</p>
           <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='bg-white text-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>Install App</a>
           <p onClick={logoutUser} className='bg-white text-black py-1 px-3 rounded-2xl text-[15px] cursor-pointer'>Logout</p>
         </div>
