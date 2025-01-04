@@ -1,5 +1,7 @@
 import express from "express";
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv';
+import 'dotenv/config';
+import cors from "cors";
 import userRoutes from './routes/userRoutes.js'
 import connectDb from "./database/db.js";
 import cookieParser from "cookie-parser";
@@ -7,7 +9,7 @@ import cloudinary from 'cloudinary'
 import songRoutes from './routes/songRoutes.js'
 import path from "path";
 
-dotenv.config()
+// dotenv.config()
 
 cloudinary.v2.config({
     cloud_name: process.env.Cloud_Name,
@@ -21,7 +23,7 @@ const port = process.env.PORT
 //using middlewares
 app.use(express.json());
 app.use(cookieParser());
-
+// app.use(cors({ credentials: true}));
 //import routes
 app.use("/api/user", userRoutes);
 app.use("/api/song", songRoutes);

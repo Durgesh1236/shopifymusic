@@ -12,7 +12,6 @@ export const UserProvider = ({ children }) => {
 
     async function registerUser(name, email, password, navigate, fetchSong, fetchAlbums) {
         setbtnLoading(true)
-
         try {
             const { data } = await axios.post("/api/user/register", { name, email, password })
 
