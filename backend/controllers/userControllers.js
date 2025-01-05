@@ -1,7 +1,8 @@
 import { User } from "../models/User.js"
 import generateToken from "../utils/generateToken.js";
 import TryCatch from "../utils/TryCatch.js";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
+import transporter from '../config/nodemailer.js';
  
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
@@ -20,7 +21,17 @@ import bcrypt from 'bcrypt'
             email,
             password: hashPassword,
         });
-        generateToken(user._id, res)
+        generateToken(user._id, res);
+
+         //Sending welcome email
+      const mailOptions = {
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: 'Welcome to ShopifyMusic',
+        text: `Hello ${user}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
+     }
+     await transporter.sendMail(mailOptions);
+
     
         res.status(201).json({
             user,
