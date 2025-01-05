@@ -19,7 +19,7 @@ const Login = () => {
   return (
     <div className='flex items-center justify-center h-screen max-h-screen'>
       <div className="bg-black text-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className='text-3xl font-semibold text-center mb-8'>Login to Spopify</h2>
+        <h2 className='text-3xl font-semibold text-center mb-8'>Login to Shopify</h2>
 
         <form className='mt-8' onSubmit={submitHandler}>
             <div className="mb-4">

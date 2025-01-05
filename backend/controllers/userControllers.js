@@ -28,7 +28,7 @@ import transporter from '../config/nodemailer.js';
         from: process.env.SENDER_EMAIL,
         to: email,
         subject: 'Welcome to ShopifyMusic',
-        text: `Hello ${user}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
+        text: `Hello ${name}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
      }
      await transporter.sendMail(mailOptions);
 
