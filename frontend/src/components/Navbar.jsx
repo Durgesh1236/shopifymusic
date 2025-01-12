@@ -5,7 +5,7 @@ import { UserData } from '../context/User';
 import { GoArrowRight } from "react-icons/go";
 import { GoArrowLeft } from "react-icons/go";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { IoSearch } from "react-icons/io5";
+// import { IoSearch } from "react-icons/io5";
 import { MdInstallMobile } from "react-icons/md";
 
 const Navbar = ({searchBar, setSearchBar}) => {
@@ -20,12 +20,12 @@ const Navbar = ({searchBar, setSearchBar}) => {
     <>
     <div className='w-full flex justify-between items-center font-semibold'>
       <div className="flex items-center gap-2">
-      <p onClick={menuvisible} className="menu-icon text-2xl sm:hidden"><HiMenuAlt2/></p>
+      <p onClick={menuvisible} className="menu-icon mr-1 text-2xl sm:hidden"><HiMenuAlt2/></p>
       <p onClick={()=>navigate(-1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer'><GoArrowLeft /></p>
       <p onClick={()=>navigate(+1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer'><GoArrowRight /></p>
-      <div className="w-8 h-8 ml-24 flex justify-center items-center md:hidden rounded-full bg-white text-black relative group">
+      {/* <div className="w-8 h-8 ml-24 flex justify-center items-center md:hidden rounded-full bg-white text-black relative group">
       <p onClick={()=>setSearchBar(true)} className='cursor-pointer md:hidden text-xl'><IoSearch/></p>
-      </div>
+      </div> */}
       </div>
 
            <div className="w-8 h-8 flex justify-center text-xl items-center rounded-full bg-white text-black relative group">
@@ -47,6 +47,9 @@ const Navbar = ({searchBar, setSearchBar}) => {
         <div className='flex items-center overflow-auto gap-2 mt-4'>
         <p onClick={()=>navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
         <p onClick={()=> navigate('/music')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
+        {searchBar === false ?
+        <p onClick={()=>setSearchBar(true)} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>Search</p>
+        : "" }
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Podcasts</p>
         <p onClick={()=>navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
       </div>
@@ -61,7 +64,7 @@ const Navbar = ({searchBar, setSearchBar}) => {
           {/* <p onClick={() => setVisible(false)} className='py-2 pl-6 border'></p> */}
           {
              user && user.role === "admin" ? (
-              <p onClick={()=>navigate("/admin")} className='pl-6 text-white  py-2 rounded-2xl cursor-pointer md:hidden'>AdminPanel</p>
+              <p onClick={()=>navigate("/admin")} className='pl-6 text-white border  py-2 rounded-2xl cursor-pointer md:hidden'>AdminPanel</p>
              ) : ""
           }
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white  border cursor-pointer'>About</p>
