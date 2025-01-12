@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className='flex items-center justify-center h-screen max-h-screen'>
-      <div className="bg-black text-white p-8 rounded-lg shadow-lg max-w-md w-full">
+      <div className="text-white max-w-md bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
         <h2 className='text-3xl font-semibold text-center mb-8'>Login to Shopify</h2>
 
         <form className='mt-8' onSubmit={submitHandler}>
@@ -33,10 +33,12 @@ const Login = () => {
                 <label className='block text-sm font-medium mb-1'>
                     Password
                 </label>
+                {/* <RiLockPasswordLine className='w-4 h-4'/> */}
                 <input type="password" onChange={(e)=>setPassword(e.target.value)} value={password} placeholder='Password' className='auth-input' required />
             </div>
+            <p onClick={()=>navigate('/reset-password')} className='mb-4 cursor-pointer text-gray-400 hover:text-green-500'>Forgot Password?</p>
 
-            <button disabled={btnLoading} className='auth-btn'>
+            <button disabled={btnLoading} className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>
                 {
                     btnLoading ? 
                     "Please Wait..."

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { FaBookmark, FaPlay, FaRegBookmark } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
 import { UserData } from '../context/User';
 import { SongData } from '../context/Song';
+import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 
 const SongItem = ({name,image,desc,id}) => {
 
@@ -31,7 +32,7 @@ const SongItem = ({name,image,desc,id}) => {
                   setIsPlaying(true);
                 }}><FaPlay /></button>
                 <button onClick={savetoPlaylistHandler} className='absolute bottom-2 right-2 bg-green-500 text-black p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                  { saved ? <FaBookmark /> : <FaRegBookmark />}
+                  { saved ? <FaHeart className='text-red-500 text-xl' /> : <FaRegHeart className='text-xl'/>}
                   </button>
               </div>
       </div>

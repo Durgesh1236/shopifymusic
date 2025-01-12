@@ -14,6 +14,26 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    verifyotp: {
+        type: String,
+        default: ''
+    },
+    verifyotpExpireAt: {
+        type: Number,
+        default: 0
+    },
+    isAccountVerified: {
+        type: Boolean,
+        default: false
+    },
+    resetotp: {
+        type: String,
+        default: ''
+    },
+    resetotpExpireAt: {
+        type: Number,
+        default: 0
+    },
     role: {
         type: String,
         default: "user"

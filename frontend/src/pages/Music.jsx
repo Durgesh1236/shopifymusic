@@ -1,21 +1,20 @@
 import React, { useEffect } from 'react'
 import Layout from '../components/Layout'
 import { SongData } from '../context/Song'
-import { useParams } from 'react-router-dom';
-import { assets } from '../assets/assets';
+// import { useParams } from 'react-router-dom';
+// import { assets } from '../assets/assets';
 import { FaBookmark } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa6';
 import { UserData } from '../context/User';
 
-const Album = () => {
+const Music = () => {
 
-  const { fetchAlbumSong, albumData, albumSong, setSelectedSong, setIsPlaying } = SongData();
-  const params = useParams();
+  const { albumSong, setSelectedSong, setIsPlaying, song } = SongData();
   const { addToPlaylist } = UserData();
 
-  useEffect(() => {
-    fetchAlbumSong(params.id);
-  }, [params.id]);
+//   useEffect(() => {
+//     fetchAlbumSong(params.id);
+//   }, [params.id]);
 
   const onclickHandler = (id) => {
     setSelectedSong(id);
@@ -28,25 +27,6 @@ const Album = () => {
 
   return (
     <Layout>
-      {
-        albumData && (
-          <>
-            <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-center">
-              {
-                albumData.thumbnail &&
-                <img src={albumData.thumbnail.url} className='rounded w-48' alt="" />
-              }
-
-              <div className="flex flex-col">
-                <p>Playlist</p>
-                <h2 id='username' className="text-3xl font-bold mb-4 md:text-5xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent">{albumData.title} Playlist</h2>
-                <h4>{albumData.description}</h4>
-                <p className='mt-1'>
-                  <img src={assets.logo_img} className='inline-block w-6' alt="" />
-                </p>
-              </div>
-            </div>
-
             <div className="grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7]">
               <p>
                 <b className='mr-4'>#</b>
@@ -58,7 +38,7 @@ const Album = () => {
             <hr />
 
             {
-              albumSong && albumSong.map((item, index) => (
+              song && song.map((item, index) => (
                 <div className="grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer" key={index}>
                   <p className='text-white'>
                     <b className='mr-4 text-[#a7a7a7]'>{index + 1}</b>
@@ -76,10 +56,8 @@ const Album = () => {
               ))
             }
 
-          </>
-        )}
     </Layout>
   )
 }
 
-export default Album
+export default Music

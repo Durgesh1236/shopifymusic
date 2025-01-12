@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from 'react-toastify';
 
 const UserContext = createContext()
 
@@ -14,16 +14,32 @@ export const UserProvider = ({ children }) => {
         setbtnLoading(true)
         try {
             const { data } = await axios.post("/api/user/register", { name, email, password })
-
-            toast.success(data.message);
+            const { otp } = await axios.post("/api/user/send-verify-otp");
+         toast.success(data.message);
             setUser(data.user);
+            setisAuth(true);
+            setbtnLoading(false);
+            navigate("/email-verify");
+            // fetchSong();
+            // fetchAlbums();
+        } catch (error) {
+         toast.error(error.message);
+            setbtnLoading(false);
+        }
+    }
+
+    async function verifyEmailUser(otp, navigate, fetchSong, fetchAlbums) {
+        setbtnLoading(true)
+        try {
+            const { data } = await axios.post("/api/user/verify-account", {otp});
+         toast.success(data.message);
             setisAuth(true);
             setbtnLoading(false);
             navigate("/");
             fetchSong();
             fetchAlbums();
         } catch (error) {
-            toast.error(error.response.data.message);
+    toast.error(error.message);
             setbtnLoading(false);
         }
     }
@@ -34,7 +50,7 @@ export const UserProvider = ({ children }) => {
         try {
             const { data } = await axios.post("/api/user/login", { email, password, });
 
-            toast.success(data.message);
+    toast.success(data.message);
             setUser(data.user);
             setisAuth(true);
             setbtnLoading(false);
@@ -42,7 +58,7 @@ export const UserProvider = ({ children }) => {
             fetchSong();
             fetchAlbums();
         } catch (error) {
-            toast.error(error.response.data.message)
+    toast.error(error.message)
             setbtnLoading(false)
         }
     }
@@ -65,7 +81,7 @@ export const UserProvider = ({ children }) => {
             const { data } = await axios.get("/api/user/logout");
             window.location.reload();
         } catch (error) {
-            toast.error(error.response.data.message);
+    toast.error(error.message);
         }
     }
 
@@ -73,10 +89,10 @@ export const UserProvider = ({ children }) => {
         try {
             const { data } = await axios.post("/api/user/song/" + id);
 
-            toast.success(data.message);
+    toast.success(data.message);
             fetchUser();
         } catch (error) {
-            toast.error(error.response.data.message);
+    toast.error(error.response.data.message);
         }
     }
 
@@ -84,9 +100,8 @@ export const UserProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist }}>
+    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser, }}>
         {children}
-        <Toaster />
     </UserContext.Provider>
 };
 

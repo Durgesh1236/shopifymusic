@@ -44,7 +44,7 @@ const PlayList = ({ user }) => {
           <h2 id='username' className="text-3xl font-bold mb-4 md:text-5xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent">{user.name} Playlist</h2>
           <h4>Your Favourate Songs</h4>
           <p className='mt-1'>
-            <img src={assets.spotify_logo} className='inline-block w-6' alt="" />
+            <img src={assets.logo_img} className='inline-block w-6' alt="" />
           </p>
         </div>
       </div>
