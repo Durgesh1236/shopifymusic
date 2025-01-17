@@ -67,7 +67,7 @@ const Player = () => {
 
                         <div className='hidden md:block'>
                             <p>{singlesong.title}</p>
-                            <p>{singlesong.description && singlesong.description.slice(0, 30)}</p>
+                            {/* <p>{singlesong.description && singlesong.description.slice(0, 30)}</p> */}
                         </div>
                     </div>
 

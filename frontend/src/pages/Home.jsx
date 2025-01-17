@@ -15,16 +15,65 @@ const Home = () => {
     <div className='mb-4'>
         <h1 className='my-5 font-bold text-2xl'>Featured Charts</h1>
         <div className='flex overflow-auto'>
-        {album.map((item,index) => (
-          <AlbumItem key={index} name={item.title} desc={item.description} id={item._id} image={item.thumbnail.url} />
+        {album
+      .filter((album) => album.description === "Song Album") // Replace with the specific singer's name or ID
+      .map((item, index) => (
+        <AlbumItem
+          key={index}
+          name={item.title}
+          desc={item.description}
+          id={item._id}
+          image={item.thumbnail.url}
+        />
+      ))}
+        </div>
+      </div>
+
+      <div className="mb-4">
+  <h1 className="my-5 font-bold text-2xl">Best Singer Album Songs</h1>
+  <div className="flex overflow-auto">
+    {album
+      .filter((album) => album.description === "Singer Album") // Replace with the specific singer's name or ID
+      .map((item, index) => (
+        <AlbumItem
+          key={index}
+          name={item.title}
+          desc={item.description}
+          id={item._id}
+          image={item.thumbnail.url}
+        />
+      ))}
+  </div>
+</div>
+
+<div className='mb-4'>
+        <h1 className='my-5 font-bold text-2xl'>Best Bhakti Song</h1>
+        <div className='flex overflow-auto'>
+        {song
+        .filter((song) => song.description === "Bhakti Song")
+        .map((item,index) => (
+          <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
         ))}
         </div>
       </div>
 
       <div className='mb-4'>
-        <h1 className='my-5 font-bold text-2xl'>Today's biggest hits</h1>
+        <h1 className='my-5 font-bold text-2xl'>Best New Song</h1>
         <div className='flex overflow-auto'>
-        {song.map((item,index) => (
+        {song
+        .filter((song) => song.description === "New Song")
+        .map((item,index) => (
+          <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+        ))}
+        </div>
+      </div>
+      
+      <div className='mb-4'>
+        <h1 className='my-5 font-bold text-2xl'>Best 90's Old Song</h1>
+        <div className='flex overflow-auto'>
+        {song
+        .filter((song) => song.description === "90's Old Song")
+        .map((item,index) => (
           <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
         ))}
         </div>

@@ -25,7 +25,7 @@ const SongItem = ({name,image,desc,id}) => {
   return (
     <div className='min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26]'>
       <div className="relative group">
-              <img className='rounded w-[160px]' src={image} alt="" />
+              <img className='rounded w-[160px] h-[160px]' src={image} alt="" />
               <div className="flex gap-2">
                 <button className='absolute bottom-2 right-14 bg-green-500 text-black p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300' onClick={()=>{
                   setSelectedSong(id);

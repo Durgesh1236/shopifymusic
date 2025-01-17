@@ -9,7 +9,7 @@ const EmailVerify = () => {
   axios.defaults.withCredentials = true;
   const inputRefs = React.useRef([]);
   const navigate = useNavigate();
-  const {verifyEmailUser} = UserData();
+  const {verifyEmailUser, resendOtp} = UserData();
   const { fetchSong, fetchAlbums } = SongData();
 
   const handleInput = (e, index) => {
@@ -41,6 +41,11 @@ const EmailVerify = () => {
       verifyEmailUser(otp, navigate, fetchSong, fetchAlbums)
   }
 
+  const resendOtpHandler = (e) => {
+    e.preventDefault()
+    resendOtp();
+  }
+
   return (
     <div className='flex items-center justify-center min-h-screen bg-black'>
       <form onSubmit={onSubmitHandler} className="bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
@@ -58,7 +63,9 @@ const EmailVerify = () => {
                required/>
             ))}
         </div>
+        
         <button className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Verify Email</button>
+        <button onClick={resendOtpHandler} className='w-full py-3 mt-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Resend Otp</button>
       </form>
     </div>
   )

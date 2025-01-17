@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
         try {
             const { data } = await axios.post("/api/user/register", { name, email, password })
             const { otp } = await axios.post("/api/user/send-verify-otp");
-         toast.success(data.message);
+            toast.success(data.message);
             setUser(data.user);
             setisAuth(true);
             setbtnLoading(false);
@@ -32,14 +32,18 @@ export const UserProvider = ({ children }) => {
         setbtnLoading(true)
         try {
             const { data } = await axios.post("/api/user/verify-account", {otp});
+            if(data.success){
          toast.success(data.message);
             setisAuth(true);
             setbtnLoading(false);
             navigate("/");
             fetchSong();
             fetchAlbums();
+            } else {
+                navigate("/email-verify");
+            }
         } catch (error) {
-    toast.error(error.message);
+            toast.error(error.message);
             setbtnLoading(false);
         }
     }
@@ -48,9 +52,9 @@ export const UserProvider = ({ children }) => {
         setbtnLoading(true)
 
         try {
-            const { data } = await axios.post("/api/user/login", { email, password, });
+            const { data } = await axios.post("/api/user/login", { email, password });
 
-    toast.success(data.message);
+            toast.success(data.message);
             setUser(data.user);
             setisAuth(true);
             setbtnLoading(false);
@@ -58,8 +62,19 @@ export const UserProvider = ({ children }) => {
             fetchSong();
             fetchAlbums();
         } catch (error) {
-    toast.error(error.message)
+            toast.error(error.message)
             setbtnLoading(false)
+        }
+    }
+
+    async function resendOtp() {
+        try {
+            const { data } = await axios.post("/api/user/send-verify-otp");
+            if(data.success){
+                toast.success(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message)
         }
     }
 
@@ -100,7 +115,7 @@ export const UserProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser, }}>
+    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser,resendOtp, }}>
         {children}
     </UserContext.Provider>
 };
