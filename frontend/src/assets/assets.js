@@ -23,7 +23,8 @@ import arrow_left from "./left_arrow.png";
 import spotify_logo from "./spotify_logo.png";
 import clock_icon from "./clock_icon.png";
 import cross_icon from './cross_icon.png'
-import logo_img from './logo_img.avif'
+import logo_img from './logo_img.avif';
+import user_photo from './user_photo.png'
 export const assets = {
   bell_icon,
   home_icon,
@@ -51,4 +52,5 @@ export const assets = {
   clock_icon,
   cross_icon,
   logo_img,
+  user_photo
 };

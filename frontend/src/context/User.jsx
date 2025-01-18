@@ -78,6 +78,20 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    async function addProfile(userid, formData, setFile) {
+        setLoading(true)
+        try {
+            const { data } = await axios.post("/api/user/" + userid , formData);
+            toast.success(data.message);
+            setLoading(false);
+            // fetchAlbums();
+            setFile(null);
+        } catch (error) {
+            toast.error(error.response.data.message);
+            setLoading(false);
+        }
+    }
+
     async function fetchUser() {
         try {
             const { data } = await axios.get("/api/user/me");
@@ -115,7 +129,7 @@ export const UserProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser,resendOtp, }}>
+    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser,resendOtp, addProfile, }}>
         {children}
     </UserContext.Provider>
 };

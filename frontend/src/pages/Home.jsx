@@ -8,7 +8,6 @@ import SongItem from '../components/SongItem'
 const Home = () => {
 
   const { song, album } = SongData();
-  
   return (
     <>
     <Layout>
@@ -16,7 +15,7 @@ const Home = () => {
         <h1 className='my-5 font-bold text-2xl'>Featured Charts</h1>
         <div className='flex overflow-auto'>
         {album
-      .filter((album) => album.description === "Song Album") // Replace with the specific singer's name or ID
+      .filter((album) => album.description === "Song Album") 
       .map((item, index) => (
         <AlbumItem
           key={index}
@@ -33,7 +32,7 @@ const Home = () => {
   <h1 className="my-5 font-bold text-2xl">Best Singer Album Songs</h1>
   <div className="flex overflow-auto">
     {album
-      .filter((album) => album.description === "Singer Album") // Replace with the specific singer's name or ID
+      .filter((album) => album.description === "Singer Album") 
       .map((item, index) => (
         <AlbumItem
           key={index}

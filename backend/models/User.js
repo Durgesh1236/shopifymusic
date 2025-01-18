@@ -14,6 +14,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    thumbnail: {
+        id: String,
+        url: String,
+     },
     verifyotp: {
         type: String,
         default: ''

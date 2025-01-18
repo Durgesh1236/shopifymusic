@@ -3,6 +3,9 @@ import generateToken from "../utils/generateToken.js";
 import TryCatch from "../utils/TryCatch.js";
 import bcrypt from 'bcrypt';
 import transporter from '../config/nodemailer.js';
+import getDataurl from "../utils/urlGenerator.js";
+import cloudinary from "cloudinary"
+import mongoose from "mongoose";
  
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
@@ -282,3 +285,30 @@ export const resetPassword = async (req, res) => {
      });
   }
 }
+
+export const uploadImage = TryCatch(async (req, res) => {
+   const file = req.file;
+   const fileUrl = getDataurl(file);
+   const cloud = await cloudinary.v2.uploader.upload(fileUrl.content);
+   const userId = req.params.id;
+   if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: "Invalid user ID" });
+  }
+  const user = await User.findByIdAndUpdate(userId, {
+       thumbnail: {
+           id: cloud.public_id,
+           url: cloud.secure_url,
+       },
+   }, { new: true }
+   );
+   
+   if (!user) {
+      return res.status(404).json({ message: "User not found" });
+  }
+
+  // Respond with success
+  res.status(200).json({
+      message: "Profile uploaded successfully",
+      thumbnail: user.thumbnail,
+  });
+});

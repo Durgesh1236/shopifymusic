@@ -1,6 +1,7 @@
 import express from "express";
-import { isAuthenticated, loginUser, logoutUser, myProfile, registerUser, resetPassword, saveToPlaylist, sendResetOtp, sendVerifyOtp, verifyEmail } from "../controllers/userControllers.js";
+import { isAuthenticated, loginUser, logoutUser, myProfile, registerUser, resetPassword, saveToPlaylist, sendResetOtp, sendVerifyOtp, uploadImage, verifyEmail } from "../controllers/userControllers.js";
 import { isAuth } from "../middlewares/isAuth.js";
+import uploadFile from "../middlewares/multer.js";
 
 const router = express.Router();
 router.post("/register", registerUser);
@@ -13,4 +14,6 @@ router.post("/verify-account", isAuth, verifyEmail);
 router.get("/is-auth", isAuth, isAuthenticated);
 router.post("/send-reset-otp", sendResetOtp);
 router.post("/reset-password", resetPassword);
+router.post("/:id",isAuth, uploadFile, uploadImage);
+
 export default router;

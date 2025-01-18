@@ -35,14 +35,14 @@ const Navbar = ({searchBar, setSearchBar}) => {
             <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black pt-10">
               <ul className='list-none w-40 m-0 p-2 bg-gray-100 text-sm rounded-2xl'>
                 <li>
-                <li className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
+                <li onClick={()=>navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
                 <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
                 </li>
                 <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
               </ul>
             </div>
           </div>
-        </div>
+        </div> 
 
         <div className='flex items-center overflow-auto gap-2 mt-4'>
         <p onClick={()=>navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
@@ -60,17 +60,17 @@ const Navbar = ({searchBar, setSearchBar}) => {
             <p className='h-4 text-white  rotate-180'><GoArrowRight/></p>
             <p>Back</p>
           </div>
-          <p onClick={() => setVisible(false)} className='py-2 text-white  pl-6 border'>My Profile</p>
+          <p onClick={()=>navigate("/my-profile")} className='py-2 text-white  pl-6 border'>My Profile</p>
           {/* <p onClick={() => setVisible(false)} className='py-2 pl-6 border'></p> */}
           {
              user && user.role === "admin" ? (
-              <p onClick={()=>navigate("/admin")} className='pl-6 text-white border  py-2 rounded-2xl cursor-pointer md:hidden'>AdminPanel</p>
+              <p onClick={()=>navigate("/admin")} className='pl-6 text-white border py-2 cursor-pointer md:hidden'>AdminPanel</p>
              ) : ""
           }
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white  border cursor-pointer'>About</p>
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white  border cursor-pointer'>Contact</p>
           <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-2 text-white border flex pl-6 px-2 cursor-pointer pr-10' >Install App
-          <MdInstallMobile className='mt-1 ml-1' />
+          <MdInstallMobile className='mt-1 ml-1' /> 
         </a>
         </div>
       </div>
