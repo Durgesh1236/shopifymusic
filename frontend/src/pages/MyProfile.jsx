@@ -44,10 +44,17 @@ const MyProfile = () => {
         </div>
         </form>
 
-        <div className="flex-col">
-        <h2 id='lc' className='text-2xl font-bold mb-4 md:text-5xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent'>Name : {user.name}</h2>
-        <p className='text-2xl font-bold md:text-2xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent'>Email : {user.email}</p>
-        </div>
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+      <h2
+        id="lc"
+        className="text-2xl font-bold mb-4 md:text-4xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent"
+      >
+        Name: {user.name}
+      </h2>
+      <p className="text-lg font-medium md:text-2xl bg-gradient-to-r from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent">
+        Email: {user.email}
+      </p>
+    </div>
       </div>
     </Layout>
   )
