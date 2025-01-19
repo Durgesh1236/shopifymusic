@@ -11,7 +11,6 @@ const MyProfile = () => {
     
     const addProfileHandler = async (e) => {
         e.preventDefault();
-    
         const formData = new FormData();
         formData.append("file", file);
         addProfile(userid, formData, setFile);
@@ -22,18 +21,16 @@ const MyProfile = () => {
     <Layout>
       <div className="mt-10 flex gap-8 flex-col md:flex-row items-center md:items-center">
         {/* <img src={assets.user_photo} className='rounded-full w-40'/> */}
-        <form 
-        onSubmit={addProfileHandler}
-            >
-        <input onClick={(e)=>setFile(e.target.files[0])} type="file" id="image" accept='image/*' hidden />
+        <form onSubmit={addProfileHandler} className='flex flex-col items-center'>
+        <input onChange={(e)=>setFile(e.target.files[0])} type="file" id="image" accept='image/*' hidden/>
         <label htmlFor="image">
-            {user.thumbnail ? 
-            <img className='w-44 cursor-pointer rounded-full' src={user.thumbnail.url} alt="" />
+            {!file ? 
+            <img className='w-44 cursor-pointer rounded-full' src={user.thumbnail ? user.thumbnail.url : assets.user_photo} alt="" />
             :
           <img className='w-44 cursor-pointer rounded-full' src={file ? URL.createObjectURL(file) : assets.user_photo} alt="" />
             }
         </label>
-        <div className="mt-5">
+        <div className="mt-5 w-52">
         <button disabled={btnLoading} className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>
                 {
                     btnLoading ? 

@@ -82,10 +82,12 @@ export const UserProvider = ({ children }) => {
         setLoading(true)
         try {
             const { data } = await axios.post("/api/user/" + userid , formData);
+            // if(data.success){
             toast.success(data.message);
             setLoading(false);
-            // fetchAlbums();
             setFile(null);
+            logoutUser();
+            // }
         } catch (error) {
             toast.error(error.response.data.message);
             setLoading(false);
@@ -110,7 +112,7 @@ export const UserProvider = ({ children }) => {
             const { data } = await axios.get("/api/user/logout");
             window.location.reload();
         } catch (error) {
-    toast.error(error.message);
+            toast.error(error.message);
         }
     }
 

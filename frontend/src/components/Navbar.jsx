@@ -36,7 +36,7 @@ const Navbar = ({searchBar, setSearchBar}) => {
               <ul className='list-none w-40 m-0 p-2 bg-gray-100 text-sm rounded-2xl'>
                 <li>
                 <li onClick={()=>navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
-                <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
+                <a href='https://storage.appilix.com/uploads/app-apk-678c841d24778-1737262109.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
                 </li>
                 <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
               </ul>
