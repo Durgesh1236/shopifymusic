@@ -15,7 +15,7 @@ const Register = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        registerUser(name, email, password, navigate, fetchSong, fetchAlbums);
+        registerUser(name, email, password, navigate);
     }
 
     return (

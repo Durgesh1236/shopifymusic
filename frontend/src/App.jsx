@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Music from './pages/Music'
 import MyProfile from './pages/MyProfile'
+import Search from './components/Search'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()
@@ -32,6 +33,7 @@ const App = () => {
             <Route path='/email-verify' element={<EmailVerify />} />
             <Route path='/reset-password' element={<ResetPassword />} />
             <Route path='/music' element={<Music />} />
+            <Route path='/search' element={<Search />} />
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
           </Routes>
         </BrowserRouter>

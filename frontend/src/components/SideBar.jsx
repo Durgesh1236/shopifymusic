@@ -4,17 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import PlayListCard from './PlayListCard'
 import { UserData } from '../context/User'
 
-const SideBar = ({searchBar, setSearchBar}) => {
+const SideBar = () => {
 
     const navigate = useNavigate()
     const {user} = UserData()
-    
-    const SearchBarOpen = () =>{
-        setSearchBar(true);
-        if(searchBar === true){
-            setSearchBar(false);
-        }
-    }
 
   return (
     <div className='w-[25%] h-full p-2 flex-col gap-2 text-white hidden lg:flex'>
@@ -24,9 +17,9 @@ const SideBar = ({searchBar, setSearchBar}) => {
             <p className='font-bold'>Home</p>
         </div>
 
-        <div onClick={SearchBarOpen} className="flex items-center gap-3 pl-8 cursor-pointer">
+        <div className="flex items-center gap-3 pl-8 cursor-pointer">
             <img src={assets.search_icon} alt="" className='w-6' />
-            <p  className='font-bold'>Search</p>
+            <p onClick={()=>navigate("/search")} className='font-bold'>Search</p>
         </div>
      </div>
 
@@ -46,12 +39,12 @@ const SideBar = ({searchBar, setSearchBar}) => {
             <PlayListCard />
         </div>
 
-        <div className="p-4 m-2 bg-[#121212] rouded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
+        {/* <div className="p-4 m-2 bg-[#121212] rouded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
             <h1>Let's findsome podcast to follow</h1>
             <p className='font-light'>we'll keep you update on new episodes</p>
 
             <button className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4'>Browse Podcasts</button>
-        </div>
+        </div> */}
         {
              user && user.role === "admin" ? (
                 <button onClick={()=>navigate("/admin")} className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4 ml-6'>Admin Dashboard</button>

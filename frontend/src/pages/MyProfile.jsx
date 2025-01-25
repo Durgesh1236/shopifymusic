@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import { assets } from '../assets/assets'
 import { UserData } from '../context/User'
+import { toast } from 'react-toastify'
 
 const MyProfile = () => {
     const {user} = UserData()
@@ -12,8 +13,12 @@ const MyProfile = () => {
     const addProfileHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData();
+        if(!file){
+          toast.error("Click on image and choose Image From File");
+        } else {
         formData.append("file", file);
         addProfile(userid, formData, setFile);
+        }
       };
     
 

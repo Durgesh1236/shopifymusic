@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Layout from '../components/Layout'
 import { SongData } from '../context/Song'
 import AlbumItem from '../components/AlbumItem'
@@ -72,6 +72,17 @@ const Home = () => {
         <div className='flex overflow-auto'>
         {song
         .filter((song) => song.description === "90's Old Song")
+        .map((item,index) => (
+          <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+        ))}
+        </div>
+      </div>
+
+      <div className='mb-4'>
+        <h1 className='my-5 font-bold text-2xl'>Best Bhojpuri Songs</h1>
+        <div className='flex overflow-auto'>
+        {song
+        .filter((song) => song.description === "Bhojpuri Song")
         .map((item,index) => (
           <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
         ))}

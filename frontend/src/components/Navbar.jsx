@@ -8,13 +8,18 @@ import { HiMenuAlt2 } from "react-icons/hi";
 // import { IoSearch } from "react-icons/io5";
 import { MdInstallMobile } from "react-icons/md";
 
-const Navbar = ({searchBar, setSearchBar}) => {
+const Navbar = () => {
   const navigate = useNavigate();
   const {logoutUser, user} = UserData();
   const [visible, setVisible] = useState(false);
   const menuvisible = () => {
     setVisible(true);
   };
+
+  // const searchHandler = () =>{
+  //   setSearchBar(true);
+  //   navigate("/search")
+  // }
 
   return (
     <>
@@ -30,6 +35,9 @@ const Navbar = ({searchBar, setSearchBar}) => {
 
            <div className="w-8 h-8 flex justify-center text-xl items-center rounded-full bg-white text-black relative group">
             {
+              user.thumbnail ? 
+              <img src={user.thumbnail.url} className='rounded-full' alt="" />
+              :
               user.name[0].toUpperCase()
             }
             <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black pt-10">
@@ -46,31 +54,29 @@ const Navbar = ({searchBar, setSearchBar}) => {
         </div> 
 
         <div className='flex items-center overflow-auto gap-2 mt-4'>
-        <p onClick={()=>navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>All</p>
+        <p onClick={()=>navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>Home</p>
         <p onClick={()=> navigate('/music')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
-        {searchBar === false ?
-        <p onClick={()=>setSearchBar(true)} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>Search</p>
-        : "" }
+        <p onClick={()=>navigate("/search")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>Search</p>
         <p className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Podcasts</p>
         <p onClick={()=>navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
       </div>
 
       <div className={`absolute top-0 bottom-0 left-0 overflow-hidden bg-black transition-all ${visible ? 'w-full' : 'w-0'}`}>
         <div className='flex flex-col text-gray-600 rounded-2xl'>
-          <div onClick={() => setVisible(false)} className='flex text-white  items-center gap-4 p-3 cursor-pointer'>
-            <p className='h-4 text-white  rotate-180'><GoArrowRight/></p>
+          <div onClick={() => setVisible(false)} className='flex text-white mb-2 items-center gap-4 p-3 cursor-pointer'>
+            <p className='h-4 text-white rotate-180'><GoArrowRight/></p>
             <p>Back</p>
           </div>
-          <p onClick={()=>navigate("/my-profile")} className='py-2 text-white  pl-6 border'>My Profile</p>
+          <p onClick={()=>navigate("/my-profile")} className='py-2 text-white ml-2 mr-2  pl-6 border'>My Profile</p>
           {/* <p onClick={() => setVisible(false)} className='py-2 pl-6 border'></p> */}
           {
              user && user.role === "admin" ? (
-              <p onClick={()=>navigate("/admin")} className='pl-6 text-white border py-2 cursor-pointer md:hidden'>AdminPanel</p>
+              <p onClick={()=>navigate("/admin")} className='pl-6 text-white ml-2 mr-2 border py-2 cursor-pointer md:hidden'>AdminPanel</p>
              ) : ""
           }
-          <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white  border cursor-pointer'>About</p>
-          <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white  border cursor-pointer'>Contact</p>
-          <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-2 text-white border flex pl-6 px-2 cursor-pointer pr-10' >Install App
+          <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>About</p>
+          <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Contact</p>
+          <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
           <MdInstallMobile className='mt-1 ml-1' /> 
         </a>
         </div>

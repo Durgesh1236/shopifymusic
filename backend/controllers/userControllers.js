@@ -10,7 +10,7 @@ import mongoose from "mongoose";
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
     
-        let user = await User.findOne({email})
+       let user = await User.findOne({email});
     
         if (user)
              return res.status(400).json({
@@ -49,13 +49,13 @@ export const loginUser = TryCatch(async(req, res) => {
 
     if (!user)
          return res.status(400).json({
-        message: "No User Exists",
+         message: "No User Exists",
     });
 
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword){
         return res.status(400).json({
-       message: "Wrong Password",
+        message: "Wrong Password",
    });
 } 
 
@@ -306,7 +306,14 @@ export const uploadImage = TryCatch(async (req, res) => {
       return res.status(404).json({ message: "User not found" });
   }
 
-  // Respond with success
+  const mailOption = {
+   from: process.env.SENDER_EMAIL,
+   to: user.email,
+   subject: 'PROFILE UPDATE',
+   text: `Your profile is updated successfully. Please Login with your email id: ${email}`
+}
+await transporter.sendMail(mailOption);
+
   res.status(200).json({
       message: "Profile uploaded successfully",
       thumbnail: user.thumbnail,
