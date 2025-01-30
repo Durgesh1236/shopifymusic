@@ -76,7 +76,8 @@ const Navbar = () => {
           }
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>About</p>
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Contact</p>
-          <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
+          <a href='https://cf.admin.appmysite.com/617881/628451/android/builds/1.0.0/ams_android_628451_live.apk?_gl=1*1t48ngx*_gcl_au*MTU2MDE2MzUyNi4xNzM4MjUxMjc0*_ga*ODg4MTQ1OTAwLjE3MzgyNTEyNzQ.*_ga_BWZ5717E0Z*MTczODI1MTI3NC4xLjEuMTczODI1MTY4MS4wLjAuMA..'
+           className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
           <MdInstallMobile className='mt-1 ml-1' /> 
         </a>
         </div>
