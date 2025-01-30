@@ -81,12 +81,10 @@ export const UserProvider = ({ children }) => {
         setLoading(true)
         try {
             const { data } = await axios.post("/api/user/" + userid , formData);
-            // if(data.success){
             toast.success(data.message);
             setLoading(false);
             setFile(null);
             logoutUser();
-            // }
         } catch (error) {
             toast.error(error.response.data.message);
             setLoading(false);
