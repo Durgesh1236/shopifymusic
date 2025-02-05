@@ -288,34 +288,52 @@ export const resetPassword = async (req, res) => {
 
 export const uploadImage = TryCatch(async (req, res) => {
    const file = req.file;
-   const fileUrl = getDataurl(file);
-   const cloud = await cloudinary.v2.uploader.upload(fileUrl.content);
+
+   const compressedImage = await sharp(file.buffer)
+       .resize(500, 500) 
+       .png({ quality: 80 })
+       .jpeg({ quality: 80 }) 
+       .toBuffer();
+
+   const fileUrl = getDataurl({ ...file, buffer: compressedImage });
+
+   const cloud = await cloudinary.v2.uploader.upload(fileUrl.content, {
+       quality: "auto", 
+   });
+
    const userId = req.params.id;
-   if (!mongoose.Types.ObjectId.isValid(userId)) {
-      return res.status(400).json({ message: "Invalid user ID" });
-  }
-  const user = await User.findByIdAndUpdate(userId, {
-       thumbnail: {
-           id: cloud.public_id,
-           url: cloud.secure_url,
-       },
-   }, { new: true }
-   );
+
    
+   if (!mongoose.Types.ObjectId.isValid(userId)) {
+       return res.status(400).json({ message: "Invalid user ID" });
+   }
+
+   const user = await User.findByIdAndUpdate(
+       userId,
+       {
+           thumbnail: {
+               id: cloud.public_id,
+               url: cloud.secure_url,
+           },
+       },
+       { new: true }
+   );
+
    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-  }
+       return res.status(404).json({ message: "User not found" });
+   }
 
-  const mailOption = {
-   from: process.env.SENDER_EMAIL,
-   to: user.email,
-   subject: 'PROFILE UPDATE',
-   text: `Your profile is updated successfully. Please Login with your email id: ${email}`
-}
-await transporter.sendMail(mailOption);
+   const mailOption = {
+       from: process.env.SENDER_EMAIL,
+       to: user.email,
+       subject: "PROFILE UPDATE",
+       text: `Your profile is updated successfully. Please log in with your email id: ${user.email}`,
+   };
 
-  res.status(200).json({
-      message: "Profile uploaded successfully",
-      thumbnail: user.thumbnail,
-  });
+   await transporter.sendMail(mailOption);
+
+   res.status(200).json({
+       message: "Profile uploaded successfully",
+       thumbnail: user.thumbnail,
+   });
 });

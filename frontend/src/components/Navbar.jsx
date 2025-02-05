@@ -44,7 +44,7 @@ const Navbar = () => {
               <ul className='list-none w-40 m-0 p-2 bg-gray-100 text-sm rounded-2xl'>
                 <li>
                 <li onClick={()=>navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
-                <a href='https://storage.appilix.com/uploads/app-apk-678d0fa730e2b-1737297831.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
+                <a href='https://warehouse.appilix.com/uploads/app-apk-67a2ed667198b-1738730854.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
                 {/* <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a> */}
                 </li>
                 <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
@@ -76,7 +76,7 @@ const Navbar = () => {
           }
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>About</p>
           <p onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Contact</p>
-          <a href='https://cf.admin.appmysite.com/617881/628451/android/builds/1.0.0/ams_android_628451_live.apk?_gl=1*1t48ngx*_gcl_au*MTU2MDE2MzUyNi4xNzM4MjUxMjc0*_ga*ODg4MTQ1OTAwLjE3MzgyNTEyNzQ.*_ga_BWZ5717E0Z*MTczODI1MTI3NC4xLjEuMTczODI1MTY4MS4wLjAuMA..'
+          <a href='https://warehouse.appilix.com/uploads/app-apk-67a2ed667198b-1738730854.apk'
            className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
           <MdInstallMobile className='mt-1 ml-1' /> 
         </a>

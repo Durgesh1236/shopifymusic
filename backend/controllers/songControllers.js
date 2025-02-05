@@ -3,6 +3,7 @@ import { Song } from "../models/Song.js";
 import TryCatch from "../utils/TryCatch.js";
 import getDataurl from "../utils/urlGenerator.js";
 import cloudinary from "cloudinary"
+import sharp from "sharp"; 
 
 export const createAlbum = TryCatch(async (req, res) => {
     if (req.user.role !== "admin") {
@@ -13,8 +14,17 @@ export const createAlbum = TryCatch(async (req, res) => {
 
     const { title, description } = req.body;
     const file = req.file;
-    const fileUrl = getDataurl(file);
-    const cloud = await cloudinary.v2.uploader.upload(fileUrl.content);
+
+    const compressedImage = await sharp(file.buffer)
+        .resize(800) 
+        .jpeg({ quality: 80 })
+        .png({ quality: 80 })  
+        .toBuffer();
+
+    const fileUrl = getDataurl({ ...file, buffer: compressedImage });
+    const cloud = await cloudinary.v2.uploader.upload(fileUrl.content, {
+        quality: "auto", 
+    });
 
     await Album.create({
         title,
@@ -30,10 +40,6 @@ export const createAlbum = TryCatch(async (req, res) => {
     });
 });
 
-export const getAllAlbum = TryCatch(async (req, res) => {
-    const albums = await Album.find()
-    res.json(albums);
-});
 
 export const addSong = TryCatch(async (req, res) => {
     if (req.user.role !== "admin") {
@@ -73,19 +79,35 @@ export const addThumbnail = TryCatch(async (req, res) => {
     }
 
     const file = req.file;
-    const fileUrl = getDataurl(file);
-    const cloud = await cloudinary.v2.uploader.upload(fileUrl.content);
 
-    await Song.findByIdAndUpdate(req.params.id, {
-        thumbnail: {
-            id: cloud.public_id,
-            url: cloud.secure_url,
+    const compressedImage = await sharp(file.buffer)
+        .resize(800) 
+        .jpeg({ quality: 80 }) 
+        .toBuffer();
+
+    const fileUrl = getDataurl({ ...file, buffer: compressedImage });
+    const cloud = await cloudinary.v2.uploader.upload(fileUrl.content, {
+        quality: "auto", 
+    });
+
+    await Song.findByIdAndUpdate(
+        req.params.id,
+        {
+            thumbnail: {
+                id: cloud.public_id,
+                url: cloud.secure_url,
+            },
         },
-    }, { new: true }
+        { new: true }
     );
     res.json({
-        message: "thumbnail Added",
+        message: "Thumbnail Added",
     });
+});
+
+export const getAllAlbum = TryCatch(async (req, res) => {
+    const albums = await Album.find()
+    res.json(albums);
 });
 
 export const getAllSongs = TryCatch(async (req, res) => {
