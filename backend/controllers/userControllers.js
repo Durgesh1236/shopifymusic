@@ -6,7 +6,8 @@ import transporter from '../config/nodemailer.js';
 import getDataurl from "../utils/urlGenerator.js";
 import cloudinary from "cloudinary"
 import mongoose from "mongoose";
- 
+import sharp from "sharp"; 
+
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
     
