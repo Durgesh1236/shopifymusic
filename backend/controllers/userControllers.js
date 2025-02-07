@@ -354,6 +354,12 @@ export const saveToHistory = TryCatch(async(req,res) =>{
    //     });
    // }
 
+   if (user.playhistory.includes(req.params.id)) {
+      return res.json({
+          message: "Song already in history",
+      });
+  }
+
    user.playhistory.push(req.params.id);
    await user.save();
 

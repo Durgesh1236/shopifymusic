@@ -61,7 +61,7 @@ const Home = () => {
 <div className='mb-4'>
         <h1 className='my-5 font-bold text-2xl'>Recent Play Songs</h1>
         <div className='flex overflow-auto'>
-        {myHistory && [...myHistory].reverse() 
+        {myHistory && myHistory 
       .map((item, index) => (
         <SongItem
           key={index}
