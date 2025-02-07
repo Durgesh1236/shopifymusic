@@ -48,6 +48,12 @@ const schema = new mongoose.Schema({
             required: true,
         },
     ],
+    playhistory: [
+        {
+            type: String,
+            required: true,
+        },
+    ],
 }, {
     timestamps: true
 });

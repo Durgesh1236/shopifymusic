@@ -3,9 +3,11 @@ import { SongData } from '../context/Song';
 import { GrChapterPrevious } from "react-icons/gr";
 import { GrChapterNext } from "react-icons/gr";
 import { FaPause, FaPlay } from "react-icons/fa6";
+import { UserData } from '../context/User';
 
 const Player = () => {
   const { singlesong, fetchSingleSong, selectedSong, isPlaying, setIsPlaying, previousMusic, nextMusic } = SongData();
+  const {addToHistory} = UserData();
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
@@ -16,7 +18,7 @@ const Player = () => {
   const generateRandomColor = () => {
     const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     setBgColor(randomColor);
-    // document.body.style.backgroundColor = bgcolor; 
+    // document.body.style.backgroundColor = bgcolor;
   };
   useEffect(()=>{
     document.body.style.backgroundColor = bgcolor;
@@ -24,16 +26,21 @@ const Player = () => {
     
   
   const handlePlayPause = () => {
+  //   if (!isPlaying) {
+  //     addToHistory(singlesong._id); // Save play history when a song starts playing
+  // }
     if (isPlaying) {
       audioRef.current.pause();
       setBgColor("#000000")
-    } else {
+    } 
+    else {
       audioRef.current.play();
+      addToHistory(singlesong._id);
     }
     setIsPlaying(!isPlaying);
   };
 
-  // Handle the volume change
+  
   const handleVolumeChange = (e) => {
     const newVolume = e.target.value;
     setVolume(newVolume);

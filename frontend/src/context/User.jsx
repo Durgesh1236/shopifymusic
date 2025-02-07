@@ -113,6 +113,16 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    async function addToHistory(id) {
+        try {
+            const { data } = await axios.post("/api/user/save-history/" + id);
+        //    toast.success(data.message);
+            fetchUser()
+        } catch (error) {
+          toast.error(error.response.data.message);
+        }
+    }
+
     async function addToPlaylist(id) {
         try {
             const { data } = await axios.post("/api/user/song/" + id);
@@ -128,7 +138,9 @@ export const UserProvider = ({ children }) => {
         fetchUser();
     }, []);
 
-    return <UserContext.Provider value={{ registerUser, user, isAuth, btnLoading, loading, loginUser, logoutUser, addToPlaylist, verifyEmailUser,resendOtp, addProfile, }}>
+    return <UserContext.Provider value={{ registerUser, user, isAuth, 
+    btnLoading, loading, loginUser, logoutUser, addToPlaylist, 
+    verifyEmailUser,resendOtp, addProfile, addToHistory, }}>
         {children}
     </UserContext.Provider>
 };

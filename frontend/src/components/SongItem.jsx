@@ -8,7 +8,7 @@ const SongItem = ({name,image,desc,id}) => {
 
   const [saved, setSaved] = useState(false)
   const { setSelectedSong, isPlaying, setIsPlaying } = SongData();
-  const { addToPlaylist, user } = UserData();
+  const { addToPlaylist, user, addToHistory } = UserData();
 
   const playList = user.playlist;
   useEffect(()=>{
@@ -30,6 +30,7 @@ const SongItem = ({name,image,desc,id}) => {
                 <button className='absolute bottom-2 right-14 bg-green-500 text-black p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300' onClick={()=>{
                   setSelectedSong(id);
                   setIsPlaying(true);
+                 addToHistory(id);
                 }}><FaPlay /></button>
                 <button onClick={savetoPlaylistHandler} className='absolute bottom-2 right-2 bg-green-500 text-black p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                   { saved ? <FaHeart className='text-red-500 text-xl' /> : <FaRegHeart className='text-xl'/>}

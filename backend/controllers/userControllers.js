@@ -291,7 +291,8 @@ export const uploadImage = TryCatch(async (req, res) => {
    const file = req.file;
 
    const compressedImage = await sharp(file.buffer)
-       .resize(500, 500) 
+        .rotate()
+       .resize(600, 600) 
        .png({ quality: 80 })
        .jpeg({ quality: 80 }) 
        .toBuffer();
@@ -333,8 +334,30 @@ export const uploadImage = TryCatch(async (req, res) => {
 
    await transporter.sendMail(mailOption);
 
-   res.status(200).json({
+   return res.status(200).json({
        message: "Profile uploaded successfully",
        thumbnail: user.thumbnail,
    });
+});
+
+export const saveToHistory = TryCatch(async(req,res) =>{
+   const user = await User.findById(req.user._id);
+   // if(user.playlist.includes(req.params.id)){
+   //     const index = user.playlist.indexOf(req.params.id)
+
+   //     user.playlist.splice(index,1);
+
+   //     await user.save();
+
+   //    return res.json({
+   //         message: "Removed from playlist",
+   //     });
+   // }
+
+   user.playhistory.push(req.params.id);
+   await user.save();
+
+      return res.json({
+           message: "Added to History",
+       });
 });

@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import { SongData } from '../context/Song'
 import AlbumItem from '../components/AlbumItem'
 import SongItem from '../components/SongItem'
-
+import { UserData } from '../context/User'
 
 const Home = () => {
 
   const { song, album } = SongData();
+ const [myHistory, setMyHistory] = useState([])
+ const {user} = UserData();
+  useEffect(() => {
+    if (song && user && Array.isArray(user.playhistory)) {
+      const filteredSongs = song.filter((e) => user.playhistory.includes(e._id.toString())
+      );
+      setMyHistory(filteredSongs);
+    }
+  }, [song, user]);
+
   return (
     <>
     <Layout>
@@ -44,6 +54,25 @@ const Home = () => {
       ))}
   </div>
 </div>
+
+{/* User Play History */}
+
+{myHistory ?
+<div className='mb-4'>
+        <h1 className='my-5 font-bold text-2xl'>Recent Play Songs</h1>
+        <div className='flex overflow-auto'>
+        {myHistory && [...myHistory].reverse() 
+      .map((item, index) => (
+        <SongItem
+          key={index}
+          name={item.title}
+          desc={item.description}
+          id={item._id}
+          image={item.thumbnail.url}
+        />
+      ))}
+        </div>
+      </div>: ""}
 
 <div className='mb-4'>
         <h1 className='my-5 font-bold text-2xl'>Best Bhakti Song</h1>
