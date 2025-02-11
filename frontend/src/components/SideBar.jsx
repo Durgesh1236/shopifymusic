@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {assets} from '../assets/assets'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PlayListCard from './PlayListCard'
 import { UserData } from '../context/User'
 
@@ -39,12 +39,22 @@ const SideBar = () => {
             <PlayListCard />
         </div>
 
-        {/* <div className="p-4 m-2 bg-[#121212] rouded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
-            <h1>Let's findsome podcast to follow</h1>
-            <p className='font-light'>we'll keep you update on new episodes</p>
+        <div className="bg-[#121212] rouded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
+            <p className='text-start mt-5 text-white text-xl'>Our Best Website...</p>
+          <Link to={'https://forever-frontend-two.vercel.app/login'} onClick={() => setVisible(false)} className='py-2 flex pl-6 w-full hover:bg-[#ffffff26] rounded-lg text-white mr-2 cursor-pointer'>
+          <img src={assets.forever_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Forever Shopping
+          </Link>
 
-            <button className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4'>Browse Podcasts</button>
-        </div> */}
+          <Link to={'https://vedanta-ai.vercel.app/'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
+           <img src={assets.ai_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Chat With AI
+           </Link>
+
+           <Link to={'https://vidtube-s6si.vercel.app/'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
+           <img src={assets.vid_img} className='w-7 mr-2 ml-[-5px]' alt="" /> VideoTube
+           </Link>
+        </div>
+
+        
         {
              user && user.role === "admin" ? (
                 <button onClick={()=>navigate("/admin")} className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4 ml-6'>Admin Dashboard</button>

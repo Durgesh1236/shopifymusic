@@ -123,6 +123,16 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    async function deleteRecentSong(id) {
+        try {
+            const { data } = await axios.delete("/api/user/recent-delete/" + id);
+            toast.success(data.message);
+            // fetchUser();
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
+    }
+
     async function addToPlaylist(id) {
         try {
             const { data } = await axios.post("/api/user/song/" + id);
@@ -140,7 +150,7 @@ export const UserProvider = ({ children }) => {
 
     return <UserContext.Provider value={{ registerUser, user, isAuth, 
     btnLoading, loading, loginUser, logoutUser, addToPlaylist, 
-    verifyEmailUser,resendOtp, addProfile, addToHistory, }}>
+    verifyEmailUser,resendOtp, addProfile, addToHistory, deleteRecentSong,  }}>
         {children}
     </UserContext.Provider>
 };

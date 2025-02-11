@@ -25,6 +25,9 @@ import clock_icon from "./clock_icon.png";
 import cross_icon from './cross_icon.png'
 import logo_img from './logo_img.avif';
 import user_photo from './user_photo.png'
+import ai_logo from './ai_logo.jpg'
+import forever_logo from './images.png'
+import vid_img from './vid_img.png'
 export const assets = {
   bell_icon,
   home_icon,
@@ -52,5 +55,8 @@ export const assets = {
   clock_icon,
   cross_icon,
   logo_img,
-  user_photo
+  user_photo,
+  ai_logo,
+  forever_logo,
+  vid_img
 };

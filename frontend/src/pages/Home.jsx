@@ -4,12 +4,14 @@ import { SongData } from '../context/Song'
 import AlbumItem from '../components/AlbumItem'
 import SongItem from '../components/SongItem'
 import { UserData } from '../context/User'
+import { MdDelete } from 'react-icons/md'
 
 const Home = () => {
 
   const { song, album } = SongData();
  const [myHistory, setMyHistory] = useState([])
- const {user} = UserData();
+ const {user, deleteRecentSong} = UserData();
+
   useEffect(() => {
     if (song && user && Array.isArray(user.playhistory)) {
       const filteredSongs = song.filter((e) => user.playhistory.includes(e._id.toString())
@@ -17,6 +19,24 @@ const Home = () => {
       setMyHistory(filteredSongs);
     }
   }, [song, user]);
+
+  const [updated, setUpdated] = useState(false);
+
+const deleteRecentHandler = (id) => {
+  if (confirm("Are you sure you want to delete this song?")) {
+    deleteRecentSong(id);
+    console.log(id);
+    setUpdated(true); // Trigger useEffect after deletion
+  }
+};
+
+// Auto-reload page after deletion
+useEffect(() => {
+  if (updated) {
+    window.location.reload(); // Reloads the page
+  }
+}, [updated]);
+
 
   return (
     <>
@@ -58,21 +78,31 @@ const Home = () => {
 {/* User Play History */}
 
 {myHistory ?
-<div className='mb-4'>
-        <h1 className='my-5 font-bold text-2xl'>Recent Play Songs</h1>
-        <div className='flex overflow-auto'>
-        {myHistory && myHistory 
-      .map((item, index) => (
+  <div className='mb-4'>
+  <h1 className='my-5 font-bold text-2xl'>Recent Play Songs</h1>
+  <div className='flex overflow-auto'>
+    {myHistory && myHistory.map((item, index) => (
+      <div key={index} className="relative group">
+        {/* Song Item */}
         <SongItem
-          key={index}
           name={item.title}
           desc={item.description}
           id={item._id}
           image={item.thumbnail.url}
         />
-      ))}
-        </div>
-      </div>: ""}
+        
+        {/* Delete Button (Appears on Hover) */}
+        <button 
+          onClick={() => deleteRecentHandler(item._id)}
+          className='absolute top-3 right-4 bg-green-500 text-black p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300'
+        >
+          <MdDelete />
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+ : "" }
 
 <div className='mb-4'>
         <h1 className='my-5 font-bold text-2xl'>Best Bhakti Song</h1>

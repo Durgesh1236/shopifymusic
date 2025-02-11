@@ -47,51 +47,25 @@ const Search = ({ setSearchBar }) => {
     setSearchQuery('')
   }
 
-  // const startVoiceSearch = () => {
-  //   if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-  //     const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  //     recognition.lang = 'en-US';
-  //     recognition.start();
+  const startVoiceSearch = () => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
 
-  //     recognition.onresult = (event) => {
-  //       const transcript = event.results[0][0].transcript;
-  //       setSearchQuery(transcript);
-  //       handleSearchChange({ target: { value: transcript } });
-  //     };
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setSearchQuery(transcript);
+        handleSearchChange({ target: { value: transcript } });
+      };
 
-  //     recognition.onend = () => {
-  //     };
-  //   } else {
-  //     alert('Voice recognition is not supported in this browser.');
-  //   }
-  // };
-  const startVoiceSearch = async () => {
-    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      try {
-        // Request microphone permission
-        await navigator.mediaDevices.getUserMedia({ audio: true });
-  
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-          const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-          recognition.lang = 'en-US';
-          recognition.start();
-  
-          recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            setSearchQuery(transcript);
-            filterSongs(transcript);
-          };
-        } else {
-          alert('Voice recognition is not supported in this browser.');
-        }
-      } catch (error) {
-        console.error('Microphone permission denied', error);
-        alert('Please allow microphone access to use voice search.');
-      }
+      recognition.onend = () => {
+      };
     } else {
-      alert('Your browser does not support microphone access.');
+      alert('Voice recognition is not supported in this browser.');
     }
   };
+  
   
 
   return (

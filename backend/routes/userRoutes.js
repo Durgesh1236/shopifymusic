@@ -1,5 +1,6 @@
 import express from "express";
 import {  
+     deleteRecentSong,
      isAuthenticated,
      loginUser, logoutUser, 
      myProfile, registerUser, 
@@ -25,6 +26,6 @@ router.post("/send-reset-otp", sendResetOtp);
 router.post("/reset-password", resetPassword);
 router.post("/:id",isAuth, uploadFile, uploadImage);
 router.post("/save-history/:id", isAuth, saveToHistory);
-
+router.delete("/recent-delete/:id", isAuth, deleteRecentSong);
 
 export default router;

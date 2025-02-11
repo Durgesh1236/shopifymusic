@@ -15,6 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Music from './pages/Music'
 import MyProfile from './pages/MyProfile'
 import Search from './components/Search'
+import Contact from './pages/Contact'
+import About from './pages/About'
+import Career from './pages/Career'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()
@@ -35,6 +38,9 @@ const App = () => {
             <Route path='/music' element={<Music />} />
             <Route path='/search' element={<Search />} />
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
+            <Route path='/contact' element={isAuth ? <Contact/> : <Login/>} />
+            <Route path='/about' element={isAuth? <About/> : <Login/>} />
+            <Route path='/career' element={<Career/>}/>
           </Routes>
         </BrowserRouter>
       }

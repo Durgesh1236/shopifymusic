@@ -367,3 +367,14 @@ export const saveToHistory = TryCatch(async(req,res) =>{
            message: "Added to History",
        });
 });
+
+export const deleteRecentSong = TryCatch(async (req, res) => {
+   const user = await User.findById(req.user._id);
+   const index = user.playhistory.indexOf(req.params.id)
+   user.playhistory.splice(index,1);
+       await user.save();
+
+   res.json({
+       message: "Recent Song Deleted",
+   });
+});
