@@ -82,13 +82,13 @@ const Navbar = () => {
           </a>
 
           <p className='text-center mt-5 text-white text-2xl mb-2'>Our Best Website...</p>
-          <a href={'https://forever-frontend-two.vercel.app/login'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
-            <img src={assets.forever_logo} className='w-7 mr-2 ml-[-5px]' alt="" />Forever Shopping</a>
-          <a href={'https://vidtube-s6si.vercel.app/'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
-            <img src={assets.vid_img} className='w-7 mr-2 ml-[-5px]' alt="" />VideoTube</a>
-          <a href={'https://vedanta-ai.vercel.app/'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
+          <Link to={'/shopify/forever'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
+            <img src={assets.forever_logo} className='w-7 mr-2 ml-[-5px]' alt="" />Forever Shopping</Link>
+          {/* <a href={'https://vidtube-s6si.vercel.app/'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
+            <img src={assets.vid_img} className='w-7 mr-2 ml-[-5px]' alt="" />VideoTube</a> */}
+          <Link to={'/shopify/vedantaAI'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
             <img src={assets.ai_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Chat With AI
-          </a>
+          </Link>
         </div>
       </div>
     </>
