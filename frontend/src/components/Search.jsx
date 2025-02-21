@@ -43,24 +43,52 @@ const Search = ({ setSearchBar }) => {
   };
 
   const emptyHandler = () => {
-    setFilteredSongs([])
-    setSearchQuery('')
-  }
+    setFilteredSongs([]);
+    setSearchQuery('');
+  };
 
   const startVoiceSearch = () => {
+    confirm("Speak Play and Your song name");
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'en-US';
+      recognition.lang = 'en-IN';
       recognition.start();
-
+  
       recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        setSearchQuery(transcript);
-        handleSearchChange({ target: { value: transcript } });
+        const transcript = event.results[0][0].transcript.toLowerCase();
+  
+        let songName = transcript;
+        if (transcript.startsWith("play ")) {
+          songName = transcript.replace("play ", "").trim();
+        }
+  
+        const speech = new SpeechSynthesisUtterance(`shopify play your song ${songName}`);
+        speech.lang = 'en-IN';
+  
+        // Select a female voice
+        const voices = window.speechSynthesis.getVoices();
+        speech.voice = voices.find(voice => voice.name.includes("Female")) || voices[0];
+  
+        window.speechSynthesis.speak(speech);
+  
+        // Wait for speech to finish before proceeding
+        speech.onend = () => {
+          setSearchQuery(songName);
+          handleSearchChange({ target: { value: songName } });
+  
+          // Search and play the song if found
+          const matchedSong = song.find((s) => s.title.toLowerCase().includes(songName));
+          if (matchedSong) {
+            setSelectedSong(matchedSong._id);
+            setIsPlaying(true);
+            addToHistory(matchedSong._id);
+          } else {
+            alert("Song not found!");
+          }
+        };
       };
-
-      recognition.onend = () => {
-      };
+  
+      recognition.onend = () => {};
     } else {
       alert('Voice recognition is not supported in this browser.');
     }
@@ -77,7 +105,7 @@ const Search = ({ setSearchBar }) => {
           placeholder="Search..."
           value={searchQuery}
           onChange={handleSearchChange}
-          onKeyDown={(e) => e.key === 'Enter' && filteredSongs(searchQuery)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
         />
         <img
           onClick={handleSearch}

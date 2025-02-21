@@ -18,7 +18,7 @@ const Login = () => {
 
   return (
     <div className='flex items-center justify-center h-screen max-h-screen'>
-      <div className="text-white max-w-md bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
+      <div className="text-white max-w-md bg-slate-900 p-8 m-1 rounded-lg shadow-lg w-96 text-sm">
         <h2 className='text-3xl font-semibold text-center mb-8'>Login to Shopify</h2>
 
         <form className='mt-8' onSubmit={submitHandler}>
@@ -45,6 +45,19 @@ const Login = () => {
                     : "Login"
                 }
             </button>
+
+            <button 
+                    type="button"  
+                    className="w-full mt-4 py-3 bg-white text-black border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100"
+                >
+                    <img 
+                        src="https://www.svgrepo.com/show/355037/google.svg" 
+                        alt="Google Icon" 
+                        className="w-5 h-5 mr-2" 
+                    />
+                    Sign in with Google
+                </button>
+
         </form>
 
         <div className="text-center mt-6 flex justify-center">

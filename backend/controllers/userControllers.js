@@ -7,6 +7,7 @@ import getDataurl from "../utils/urlGenerator.js";
 import cloudinary from "cloudinary"
 import mongoose from "mongoose";
 import sharp from "sharp"; 
+import { VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } from "./emailTemplates.js";
 
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
@@ -28,13 +29,14 @@ import sharp from "sharp";
         generateToken(user._id, res);
 
          //Sending welcome email
-      const mailOptions = {
-        from: process.env.SENDER_EMAIL,
-        to: email,
-        subject: 'Welcome to ShopifyMusic',
-        text: `Hello ${name}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
-     }
-     await transporter.sendMail(mailOptions);
+   //    const mailOptions = {
+   //      from: process.env.SENDER_EMAIL,
+   //      to: email,
+   //      subject: 'Welcome to ShopifyMusic',
+   //    //   text: `Hello ${name}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
+   //       html: WELCOME_MESSAGE.replace("Name", name)
+   //   }
+   //   await transporter.sendMail(mailOptions);
 
     
         res.status(201).json({
@@ -49,21 +51,21 @@ export const loginUser = TryCatch(async(req, res) => {
     const user = await User.findOne({email})
 
     if (!user)
-         return res.status(400).json({
-         message: "No User Exists",
+         return res.json({
+            success: false,
+            message: "No User Exists"
     });
 
     const comparePassword = await bcrypt.compare(password, user.password);
     if (!comparePassword){
-        return res.status(400).json({
-        message: "Wrong Password",
+        return res.json({
+         success: false,
+         message: "Wrong Password"
    });
 } 
-
-    
     generateToken(user._id, res)
-
     res.status(200).json({
+      success: true,
         user,
         message: "User Loggin",
     });
@@ -107,7 +109,7 @@ export const saveToPlaylist = TryCatch(async(req,res) =>{
 
 export const sendVerifyOtp = async (req, res)=>{
     try {
-      //  const { userId } = req.body;
+   
        const user = await User.findById(req.user._id);
  
        if(user.isAccountVerified){
@@ -126,7 +128,8 @@ export const sendVerifyOtp = async (req, res)=>{
           from: process.env.SENDER_EMAIL,
           to: user.email,
           subject: 'Account Verification OTP',
-          text: `Your OTP is ${otp}. Verify your account using this OTP.`
+         //  text: `Your OTP is ${otp}. Verify your account using this OTP.`
+         html: VERIFICATION_EMAIL_TEMPLATE(otp)
        }
        await transporter.sendMail(mailOption);
  
@@ -176,6 +179,15 @@ export const sendVerifyOtp = async (req, res)=>{
        user.verifyotpExpireAt = 0;
  
        await user.save();
+
+       const mailOptions = {
+         from: process.env.SENDER_EMAIL,
+         to: user.email,
+         subject: 'Welcome to ShopifyMusic',
+          html: WELCOME_MESSAGE(user.name)
+      }
+      await transporter.sendMail(mailOptions);
+
        return res.json({
           success: true,
           message: "Email verified successfully"
@@ -188,7 +200,8 @@ export const sendVerifyOtp = async (req, res)=>{
  export const isAuthenticated = async (req, res) => {
    try {
       return res.json({
-         success: true
+         success: true,
+         message: "Account Verified Successfully"
       });
    } catch (error) {
       return res.json({success: false, message: error.message});

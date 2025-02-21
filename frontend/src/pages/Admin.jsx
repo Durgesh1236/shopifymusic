@@ -68,9 +68,9 @@ const Admin = () => {
   return (
     <div className='min-h-screen bg-[#212121] text-white p-8'>
       <Link to="/" className='bg-green-500 text-white font-bold py-2 px-4 rounded-full'>Go to home page</Link>
-
+      
+      {/* add album */}
       <h2 className='text-2xl font-bold mb-6 mt-6'>Add Album</h2>
-
       <form onSubmit={addAlbumHandler} className="bg-[#181818] p-6 rounded-lg shadow-lg">
         <div className="mb-4">
           <label className='block text-sm font-medium mb-1'>

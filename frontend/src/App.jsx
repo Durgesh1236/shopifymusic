@@ -40,7 +40,7 @@ const App = () => {
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
             <Route path='/contact' element={isAuth ? <Contact/> : <Login/>} />
             <Route path='/about' element={isAuth? <About/> : <Login/>} />
-            <Route path='/career' element={<Career/>}/>
+            <Route path='/career' element={<Career/>}/>z
           </Routes>
         </BrowserRouter>
       }

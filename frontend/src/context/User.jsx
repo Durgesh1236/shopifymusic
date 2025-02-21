@@ -53,6 +53,7 @@ export const UserProvider = ({ children }) => {
 
         try {
             const { data } = await axios.post("/api/user/login", { email, password });
+            if(data.success){
             toast.success(data.message);
             setUser(data.user);
             setisAuth(true);
@@ -60,6 +61,9 @@ export const UserProvider = ({ children }) => {
             navigate("/");
             fetchSong();
             fetchAlbums();
+            } else {
+                toast.error(data.message);
+            }
         } catch (error) {
             console.log(error.message);
             setbtnLoading(false)

@@ -41,7 +41,7 @@ const EmailVerify = () => {
       verifyEmailUser(otp, navigate, fetchSong, fetchAlbums)
   }
 
-  const resendOtpHandler = (e) => {
+  const resendOtpHandler = async (e) => {
     e.preventDefault()
     resendOtp();
   }
