@@ -28,6 +28,7 @@ import user_photo from './user_photo.png'
 import ai_logo from './ai_logo.jpg'
 import forever_logo from './images.png'
 import vid_img from './vid_img.png'
+import accept from './accept.png'
 export const assets = {
   bell_icon,
   home_icon,
@@ -58,5 +59,6 @@ export const assets = {
   user_photo,
   ai_logo,
   forever_logo,
-  vid_img
+  vid_img,
+  accept
 };

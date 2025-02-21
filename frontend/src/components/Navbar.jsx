@@ -29,9 +29,6 @@ const Navbar = () => {
           <p onClick={menuvisible} className="menu-icon mr-1 text-2xl sm:hidden"><HiMenuAlt2 /></p>
           <p onClick={() => navigate(-1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer'><GoArrowLeft /></p>
           <p onClick={() => navigate(+1)} className='w-8 bg-black p-2 rounded-2xl cursor-pointer'><GoArrowRight /></p>
-          {/* <div className="w-8 h-8 ml-24 flex justify-center items-center md:hidden rounded-full bg-white text-black relative group">
-      <p onClick={()=>setSearchBar(true)} className='cursor-pointer md:hidden text-xl'><IoSearch/></p>
-      </div> */}
         </div>
 
         <div className="w-8 h-8 flex justify-center text-xl items-center rounded-full bg-white text-black relative group">
@@ -46,7 +43,6 @@ const Navbar = () => {
               <li>
                 <li onClick={() => navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
                 <a href='https://warehouse.appilix.com/uploads/app-apk-67a2f058e5806-1738731608.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
-                {/* <a href='https://storage.appilix.com/uploads/app-apk-676f84f73affa-1735361783.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a> */}
               </li>
               <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
             </ul>

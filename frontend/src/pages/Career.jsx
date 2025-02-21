@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
+import { assets } from "../assets/assets";
 
 const careers = [
   {
@@ -40,7 +41,7 @@ const Career = () => {
     setTimeout(() => {
       setShowPopup(false);
       setSelectedJob(null);
-    }, 3000); 
+    }, 300000); 
   };
 
   return (
@@ -48,7 +49,7 @@ const Career = () => {
       <div className="max-w-4xl w-full mt-4 text-center">
         <h1 className="text-4xl font-bold text-blue-400 mb-6">Join ShopifyMusic</h1>
         <p className="text-sm mb-8">
-          We’re on a mission to revolutionize the music industry. Join us and help shape the future of music commerce.
+          We're on a mission to revolutionize the music industry. Join us and help shape the future of music commerce.
         </p>
 
         {/* Job Listings */}
@@ -116,10 +117,13 @@ const Career = () => {
 
       {/* Success Popup */}
       {showPopup && (
-        <div className="fixed top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white text-lg font-semibold px-6 py-4 rounded-lg shadow-lg z-50">
-          🎉 Congratulations {form.name}! Your form has been submitted successfully.
-        </div>
-      )}
+  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white text-black text-lg font-semibold px-6 py-4 rounded-lg shadow-lg z-50">
+    <div className="text-center">
+      <img src={assets.accept} alt="" className="w-32 h-32 mx-auto mb-4"/>
+      🎉 Congratulations {form.name}! Your form has been submitted successfully.
+    </div>
+  </div>
+)}
     </Layout>
   );
 };

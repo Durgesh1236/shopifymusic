@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
             const { data } = await axios.post("/api/user/register", { name, email, password })
             const { otp } = await axios.post("/api/user/send-verify-otp");
             toast.success(data.message);
+            toast.success(otp.data.message);
             setUser(data.user);
             setisAuth(true);
             setbtnLoading(false);
@@ -112,6 +113,7 @@ export const UserProvider = ({ children }) => {
     async function logoutUser() {
         try {
             const { data } = await axios.get("/api/user/logout");
+            toast.success(data.message);
             window.location.reload();
         } catch (error) {
             toast.error(error.message);

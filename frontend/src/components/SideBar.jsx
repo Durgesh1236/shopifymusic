@@ -41,17 +41,17 @@ const SideBar = () => {
 
         <div className="bg-[#121212] rouded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
             <p className='text-start mt-5 text-white text-xl'>Our Best Website...</p>
-          <Link to={'https://forever-frontend-two.vercel.app/login'} onClick={() => setVisible(false)} className='py-2 flex pl-6 w-full hover:bg-[#ffffff26] rounded-lg text-white mr-2 cursor-pointer'>
+          <Link to={'/shopify/forever'} onClick={() => setVisible(false)} className='py-2 flex pl-6 w-full hover:bg-[#ffffff26] rounded-lg text-white mr-2 cursor-pointer'>
           <img src={assets.forever_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Forever Shopping
           </Link>
 
-          <Link to={'https://vedanta-ai.vercel.app/'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
+          <Link to={"/shopify/vedantaAI"} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
            <img src={assets.ai_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Chat With AI
            </Link>
 
-           <Link to={'https://vidtube-s6si.vercel.app/'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
+           {/* <Link to={'/shopify/video-tube'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
            <img src={assets.vid_img} className='w-7 mr-2 ml-[-5px]' alt="" /> VideoTube
-           </Link>
+           </Link> */}
         </div>
 
         

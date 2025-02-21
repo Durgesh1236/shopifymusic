@@ -80,7 +80,7 @@ export const myProfile = TryCatch(async(req,res) => {
 export const logoutUser = TryCatch(async(req,res) => {
     res.cookie("token","", {maxAge: 0});
 
-    res.json({
+     res.json({
         message: "Logged Out Successfully",
     });
 });

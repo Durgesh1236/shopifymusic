@@ -40,7 +40,10 @@ const App = () => {
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
             <Route path='/contact' element={isAuth ? <Contact/> : <Login/>} />
             <Route path='/about' element={isAuth? <About/> : <Login/>} />
-            <Route path='/career' element={<Career/>}/>z
+            <Route path='/career' element={<Career/>}/>
+            <Route path='/shopify/forever' element={<iframe src="https://forever-frontend-two.vercel.app" width="100%" height="800px" className='bg-white' title="External Site"></iframe>}/>
+            {/* <Route path='/shopify/video-tube' element={<iframe src="https://vidtube-s6si.vercel.app/" width="100%" height="800px" className='bg-white' title="External Site"></iframe>}/> */}
+            <Route path='/shopify/vedantaAI' element={<iframe src="https://vedanta-ai.vercel.app" width="100%" height="800px" className='bg-white' title="External Site"></iframe>}/>
           </Routes>
         </BrowserRouter>
       }
