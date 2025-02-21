@@ -64,19 +64,15 @@ const Search = ({ setSearchBar }) => {
   
         const speech = new SpeechSynthesisUtterance(`shopify play your song ${songName}`);
         speech.lang = 'en-IN';
-  
-        // Select a female voice
+
         const voices = window.speechSynthesis.getVoices();
         speech.voice = voices.find(voice => voice.name.includes("Female")) || voices[0];
   
         window.speechSynthesis.speak(speech);
-  
-        // Wait for speech to finish before proceeding
         speech.onend = () => {
           setSearchQuery(songName);
           handleSearchChange({ target: { value: songName } });
   
-          // Search and play the song if found
           const matchedSong = song.find((s) => s.title.toLowerCase().includes(songName));
           if (matchedSong) {
             setSelectedSong(matchedSong._id);

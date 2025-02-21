@@ -63,6 +63,7 @@ export const UserProvider = ({ children }) => {
             fetchAlbums();
             } else {
                 toast.error(data.message);
+                setbtnLoading(false);
             }
         } catch (error) {
             console.log(error.message);
