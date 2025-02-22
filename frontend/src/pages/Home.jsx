@@ -41,6 +41,7 @@ useEffect(() => {
   return (
     <>
     <Layout>
+    <h1 id="lc" className=" mt-4 text-2xl font-bold mb-4 md:text-4xl bg-gradient-to-tr from-[#4b90ff] to-[#ff5546] bg-clip-text text-transparent">Hi' {user.name}</h1>
     <div className='mb-4'>
         <h1 className='my-5 font-bold text-2xl'>Featured Charts</h1>
         <div className='flex overflow-auto'>
@@ -57,6 +58,23 @@ useEffect(() => {
       ))}
         </div>
       </div>
+
+      <div className="mb-4">
+  <h1 className="my-5 font-bold text-2xl">Best Movies Songs For You</h1>
+  <div className="flex overflow-auto">
+    {album
+      .filter((album) => album.description === "Movies Songs") 
+      .map((item, index) => (
+        <AlbumItem
+          key={index}
+          name={item.title}
+          desc={item.description}
+          id={item._id}
+          image={item.thumbnail.url}
+        />
+      ))}
+  </div>
+</div>
 
       <div className="mb-4">
   <h1 className="my-5 font-bold text-2xl">Best Singer Album Songs</h1>

@@ -16,7 +16,7 @@ export const createAlbum = TryCatch(async (req, res) => {
     const file = req.file;
 
     const compressedImage = await sharp(file.buffer)
-        .resize(800, 800) 
+        .resize(500, 500) 
         .jpeg({ quality: 80 })
         .png({ quality: 80 })  
         .toBuffer();
@@ -81,7 +81,7 @@ export const addThumbnail = TryCatch(async (req, res) => {
     const file = req.file;
 
     const compressedImage = await sharp(file.buffer)
-        .resize(800, 800) 
+        .resize(500, 500) 
         .jpeg({ quality: 80 }) 
         .toBuffer();
 

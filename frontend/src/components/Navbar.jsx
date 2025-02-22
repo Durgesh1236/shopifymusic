@@ -44,6 +44,7 @@ const Navbar = () => {
                 <li onClick={() => navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
                 <a href='https://warehouse.appilix.com/uploads/app-apk-67a2f058e5806-1738731608.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
               </li>
+              <li onClick={()=> navigate('/my-profile')} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li>
               <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
             </ul>
           </div>
@@ -80,6 +81,7 @@ const Navbar = () => {
             className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
             <MdInstallMobile className='mt-1 ml-1' />
           </a>
+          <Link onClick={() => {setVisible(false); logoutUser;}} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Logout</Link>
 
           <p className='text-center mt-5 text-white text-2xl mb-2'>Our Best Website...</p>
           <Link to={'/shopify/forever'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>

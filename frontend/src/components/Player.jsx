@@ -26,9 +26,6 @@ const Player = () => {
     
   
   const handlePlayPause = () => {
-  //   if (!isPlaying) {
-  //     addToHistory(singlesong._id); // Save play history when a song starts playing
-  // }
     if (isPlaying) {
       audioRef.current.pause();
       setBgColor("#000000")
@@ -89,7 +86,6 @@ const Player = () => {
       clearInterval(intervalRef.current);
     }
 
-    // Cleanup interval on component unmount or when isPlaying changes
     return () => clearInterval(intervalRef.current);
   }, [isPlaying]);
 
@@ -120,7 +116,7 @@ const Player = () => {
                     ref={audioRef}
                     src={singlesong.audio.url}
                     autoPlay
-                    onPlay={generateRandomColor} // Trigger color change on play
+                    onPlay={generateRandomColor} 
                   />
                 ) : (
                   <audio ref={audioRef} src={singlesong.audio.url} />

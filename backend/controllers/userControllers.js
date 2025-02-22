@@ -7,7 +7,7 @@ import getDataurl from "../utils/urlGenerator.js";
 import cloudinary from "cloudinary"
 import mongoose from "mongoose";
 import sharp from "sharp"; 
-import { VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } from "./emailTemplates.js";
+import { RESET_EMAIL_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } from "./emailTemplates.js";
 
     export const registerUser = TryCatch(async(req, res) => {
         const { name, email, password } = req.body;
@@ -236,8 +236,9 @@ export const sendResetOtp = async (req, res) => {
         from: process.env.SENDER_EMAIL,
         to: user.email,
         subject: 'Password Reset OTP',
-        text: `Your OTP for resetting your password is ${otp}.
-        Use this OTP to proceed with resetting your password.`
+      //   text: `Your OTP for resetting your password is ${otp}.
+      //   Use this OTP to proceed with resetting your password.`
+      html: RESET_EMAIL_TEMPLATE(otp)
      }
      await transporter.sendMail(mailOption);
 
@@ -305,7 +306,7 @@ export const uploadImage = TryCatch(async (req, res) => {
 
    const compressedImage = await sharp(file.buffer)
         .rotate()
-       .resize(600, 600) 
+       .resize(500, 500) 
        .png({ quality: 80 })
        .jpeg({ quality: 80 }) 
        .toBuffer();

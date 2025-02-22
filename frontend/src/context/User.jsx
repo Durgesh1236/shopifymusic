@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
     const [isAuth, setisAuth] = useState(false)
     const [btnLoading, setbtnLoading] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [selectedJob, setSelectedJob] = useState(null);
 
     async function registerUser(name, email, password, navigate) {
         setbtnLoading(true)
@@ -151,13 +152,18 @@ export const UserProvider = ({ children }) => {
         }
     }
 
+    const handleApply = (job) => {
+        setSelectedJob(job);
+      };
+
     useEffect(() => {
         fetchUser();
     }, []);
 
     return <UserContext.Provider value={{ registerUser, user, isAuth, 
     btnLoading, loading, loginUser, logoutUser, addToPlaylist, 
-    verifyEmailUser,resendOtp, addProfile, addToHistory, deleteRecentSong,  }}>
+    verifyEmailUser,resendOtp, addProfile, addToHistory, deleteRecentSong,
+    selectedJob, setSelectedJob,handleApply, }}>
         {children}
     </UserContext.Provider>
 };
