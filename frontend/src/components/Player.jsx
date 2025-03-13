@@ -78,7 +78,6 @@ const Player = () => {
     setProgress(newTime);
   };
 
-
   useEffect(() => {
     if (isPlaying) {
       intervalRef.current = setInterval(generateRandomColor, 2000);

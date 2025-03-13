@@ -17,11 +17,6 @@ const Navbar = () => {
     setVisible(true);
   };
 
-  // const searchHandler = () =>{
-  //   setSearchBar(true);
-  //   navigate("/search")
-  // }
-
   return (
     <>
       <div className='w-full flex justify-between items-center font-semibold'>
@@ -41,10 +36,10 @@ const Navbar = () => {
           <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black pt-10">
             <ul className='list-none w-40 m-0 p-2 bg-gray-100 text-sm rounded-2xl'>
               <li>
-                <li onClick={() => navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer hidden md:block pr-10'>My Profile</li>
+                <li onClick={() => navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li>
                 <a href='https://warehouse.appilix.com/uploads/app-apk-67a2f058e5806-1738731608.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
               </li>
-              <li onClick={()=> navigate('/my-profile')} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li>
+              {/* <li onClick={()=> navigate('/my-profile')} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li> */}
               <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
             </ul>
           </div>
@@ -54,6 +49,7 @@ const Navbar = () => {
       <div className='flex items-center overflow-auto gap-2 mt-4'>
         <p onClick={() => navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>Home</p>
         <p onClick={() => navigate('/music')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
+        <p onClick={() => navigate('/videos')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Videos</p>
         <p onClick={() => navigate("/search")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>Search</p>
         <p onClick={() => navigate("/about")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>About</p>
         <p onClick={() => navigate("/contact")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Contact</p>

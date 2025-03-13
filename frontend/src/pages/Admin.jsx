@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 
 const Admin = () => {
   const { user } = UserData();
-  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum } = SongData();
+  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum, Videosong, addVideoSong } = SongData();
   const navigate = useNavigate();
 
   if (user && user.role !== "admin") {
@@ -45,6 +45,15 @@ const Admin = () => {
     formData.append("singer", singer);
     formData.append("album", Album);
     addSong(formData, setTitle, setDescription, setFile, setSinger, setAlbum);
+  };
+
+  const addVideoSongHandler = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("description", description);
+    formData.append("file", file);
+    addVideoSong(formData, setDescription, setFile);
   };
 
   const addThumbnailHandler = (id) =>{
@@ -166,6 +175,64 @@ const Admin = () => {
         </button>
       </form>
 
+       {/* Video added */}
+       <h2 className='text-2xl font-bold mb-6 mt-6'>Add Video Songs</h2>
+      <form onSubmit={addVideoSongHandler} className="bg-[#181818] p-6 rounded-lg shadow-lg">
+        {/* <div className="mb-4">
+          <label className='block text-sm font-medium mb-1'>
+            Title
+          </label>
+          <input
+            type="text"
+            onChange={(e)=>setTitle(e.target.value)} 
+            value={title} 
+            placeholder='Title'
+            className='auth-input' required />
+        </div> */}
+
+        <div className="mb-4">
+          <label className='block text-sm font-medium mb-1'>
+            Description
+          </label>
+          <input
+            type="text"
+            onChange={(e)=>setDescription(e.target.value)} 
+            value={description} 
+            placeholder='Description'
+            className='auth-input' required />
+        </div>
+
+        {/* <div className="mb-4">
+          <label className='block text-sm font-medium mb-1'>
+            Type of Songs
+          </label>
+          <input
+            type="text"
+            onChange={(e)=>setSinger(e.target.value)} 
+            value={singer} 
+            placeholder='Singer'
+            className='auth-input' required />
+        </div> */}
+
+        {/* <select className='auth-input' value={Album} onChange={(e)=>setAlbum(e.target.value)} >
+          <option value="">Choose Album</option>
+          {album && album.map((item, index) => (
+            <option value={item._id} key={index}>{item.title}</option>
+          ))}
+        </select> */}
+
+        <div className="mb-4">
+          <label className='block text-sm font-medium mb-1'>
+            Audio
+          </label>
+          <input type="file" onChange={fileChangeHandler} accept='video/*' className='auth-input' required />
+        </div>
+
+        <button disabled={loading} className='auth-btn' style={{ width: "100px" }}>
+          {loading ? "Please Wait..." : "Add"}
+        </button>
+      </form>
+
       {/* Album added list */}
       <div className="mt-8">
         <h3 className='text-xl font-semibold mb-4'>Added Albums</h3>
@@ -200,6 +267,30 @@ const Admin = () => {
 
                 <h4 className='text-lg font-bold'>{item.title}</h4>
                 <h4 className='text-sm text-gray-500'>{item.singer}</h4>
+                <h4 className='text-sm text-gray-500'>{item.description}</h4>
+
+                <button onClick={()=>deleteHandler(item._id)} className='px-3 py-1 bg-red-500 text-white rounded'><MdDelete /></button>
+              </div>
+            ))}
+        </div>
+      </div>
+
+
+      <div className="mt-8">
+        <h3 className='text-xl font-semibold mb-4'>Added Songs</h3>
+        <div className="flex justify-center md:justify-start gap-2 items-center flex-wrap">
+          {
+            Videosong && Videosong.map((item,index)=>(
+              <div key={index} className="bg-[#181818] p-4 rounded-lg shadow-md">
+                {
+                  item.thumbnail ?
+                  <img src={item.thumbnail.url} alt="" className='mr-1 w-52 h-52'  /> 
+                  :
+                  <div className="flex flex-col justify-center items-center gap-2">
+                    <input type='file' onChange={fileChangeHandler}/>
+                    <button onClick={()=>addThumbnailHandler(item._id)} className='bg-green-500 text-white px-2 py-1 rounded'>Add Thumbnail</button>
+                  </div>
+                }
                 <h4 className='text-sm text-gray-500'>{item.description}</h4>
 
                 <button onClick={()=>deleteHandler(item._id)} className='px-3 py-1 bg-red-500 text-white rounded'><MdDelete /></button>

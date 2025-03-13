@@ -7,6 +7,7 @@ const SongContext = createContext();
 export const SongProvider = ({ children }) => {
 
     const [song, setSong] = useState([]);
+    const [Videosong, setVideoSong] = useState([]);
     const [loading, setLoading] = useState(false);
     const [songLoading, setSongLoading] = useState(true);
     const [album, setAlbum] = useState([]);
@@ -16,6 +17,8 @@ export const SongProvider = ({ children }) => {
     const [index, setIndex] = useState(0);
     const [albumSong, setAlbumSong] = useState([]);
     const [albumData, setAlbumData] = useState([]);
+    const [selectedVideo, setSelectedVideo] = useState(null);
+    const [isMinimized, setIsMinimized] = useState(false);
 
     async function fetchSong() {
         try {
@@ -23,6 +26,18 @@ export const SongProvider = ({ children }) => {
             setSong(data);
             setSelectedSong(data[0]._id);
             setIsPlaying(false);
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    async function fetchVideoSong() {
+        try {
+            const { data } = await axios.get("/api/video/all");
+            setVideoSong(data);
+            // setSelectedSong(data[0]._id);
+            // setIsPlaying(false);
         } catch (error) {
             console.log(error);
 
@@ -86,6 +101,36 @@ export const SongProvider = ({ children }) => {
         }
     }
 
+    //video upload
+    async function addVideoSong(formData, setDescription, setFile) {
+        setLoading(true)
+        try {
+            const { data } = await axios.post("/api/video/videos", formData);
+            toast.success(data.message);
+            setLoading(false);
+            fetchSong();
+            setDescription("");
+            setFile(null);
+        } catch (error) {
+            toast.error(error.response.data.message);
+            setLoading(false);
+        }
+    }
+
+    async function addThumbnail(id, formData, setFile) {
+        setLoading(true)
+        try {
+            const { data } = await axios.post("/api/video/" + id, formData);
+            toast.success(data.message);
+            setLoading(false);
+            fetchSong();
+            setFile(null);
+        } catch (error) {
+            toast.error(error.response.data.message);
+            setLoading(false);
+        }
+    }
+
     async function fetchAlbums() {
         try {
             const { data } = await axios.get("/api/song/album/all");
@@ -119,6 +164,7 @@ export const SongProvider = ({ children }) => {
     useEffect(() => {
         fetchSong();
         fetchAlbums();
+        fetchVideoSong();
     }, []);
 
     function nextMusic() {
@@ -174,6 +220,12 @@ export const SongProvider = ({ children }) => {
         fetchSong,
         fetchAlbums,
         deleteAlbum,
+        Videosong,
+        addVideoSong,
+        selectedVideo, 
+        setSelectedVideo,
+        isMinimized, 
+        setIsMinimized,
     }}>
         {children}
     </SongContext.Provider>

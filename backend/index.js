@@ -1,6 +1,7 @@
 import express from "express";
 import 'dotenv/config';
 import userRoutes from './routes/userRoutes.js'
+import VideoRoutes from './routes/VideoRoutes.js'
 import connectDb from "./database/db.js";
 import cookieParser from "cookie-parser";
 import cloudinary from 'cloudinary'
@@ -25,6 +26,7 @@ app.use(cookieParser());
 //import routes
 app.use("/api/user", userRoutes);
 app.use("/api/song", songRoutes);
+app.use("/api/video", VideoRoutes);
 
 const __dirname = path.resolve()
 

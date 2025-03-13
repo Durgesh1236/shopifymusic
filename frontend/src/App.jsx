@@ -19,6 +19,8 @@ import Contact from './pages/Contact'
 import About from './pages/About'
 import Career from './pages/Career'
 import ApplyFormJob from './pages/ApplyFormJob'
+import Videos from './pages/Videos'
+import VideoPlayer from './components/VideoPlayer'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()
@@ -41,6 +43,7 @@ const App = () => {
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
             <Route path='/contact' element={isAuth ? <Contact/> : <Login/>} />
             <Route path='/about' element={isAuth? <About/> : <Login/>} />
+            <Route path='/videos' element={isAuth ? <Videos/> : <Login/>}/> 
             <Route path='/career' element={<Career/>}/>
             <Route path='/career/form' element={<ApplyFormJob/>}/>
             <Route path='/shopify/forever' element={<iframe src="https://forever-frontend-two.vercel.app" width="100%" height="1000px" className='bg-white w-full max-h-screen' title="External Site"></iframe>}/>
