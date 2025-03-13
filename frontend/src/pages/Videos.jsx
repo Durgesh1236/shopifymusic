@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Layout from '../components/Layout';
 import { SongData } from '../context/Song';
 import { SlLike, SlDislike } from "react-icons/sl";
@@ -6,6 +6,7 @@ import { SlLike, SlDislike } from "react-icons/sl";
 export default function App() {
   const videoRef = useRef(null);
   const {
+    fetchVideoSong,
     Videosong,
     selectedVideo,
     setSelectedVideo,
@@ -30,6 +31,10 @@ export default function App() {
     setIsMinimized(!isMinimized);
   };
 
+  useEffect(()=>{
+    fetchVideoSong();
+  },[])
+
   return (
     <Layout>
       <div className="min-h-screen mt-8 mb-32 text-white p-4">
@@ -45,7 +50,7 @@ export default function App() {
                 <img
                   src={video.thumbnail.url}
                   alt={video.description}
-                  className="w-full z-10 h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
+                  className="w-full z-10 h-48 sm:h-56 md:h-40 lg:h-56 object-cover"
                 />
                 {/* {video.length && (
                   <span className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-xs px-1 rounded">

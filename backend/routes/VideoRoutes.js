@@ -6,5 +6,5 @@ import { addThumbnail, addVideoSong, getAllVideos } from "../controllers/VideoCo
 const router = express.Router();
 router.post("/videos", isAuth, uploadFile, addVideoSong);
 router.post("/:id", isAuth, uploadFile, addThumbnail);
-router.get('/all', isAuth, getAllVideos);
+router.get("/all", isAuth, getAllVideos);
 export default router;

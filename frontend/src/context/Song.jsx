@@ -32,12 +32,12 @@ export const SongProvider = ({ children }) => {
         }
     }
 
-    async function fetchVideoSong() {
+    async function fetchVideoSong () {
         try {
             const { data } = await axios.get("/api/video/all");
             setVideoSong(data);
             // setSelectedSong(data[0]._id);
-            // setIsPlaying(false);
+            setIsPlaying(false);
         } catch (error) {
             console.log(error);
 
@@ -165,7 +165,7 @@ export const SongProvider = ({ children }) => {
         fetchSong();
         fetchAlbums();
         fetchVideoSong();
-    }, []);
+    },[]);
 
     function nextMusic() {
         if (index === song.length - 1) {
@@ -226,6 +226,7 @@ export const SongProvider = ({ children }) => {
         setSelectedVideo,
         isMinimized, 
         setIsMinimized,
+        fetchVideoSong,
     }}>
         {children}
     </SongContext.Provider>
