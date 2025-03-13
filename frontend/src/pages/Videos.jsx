@@ -82,14 +82,14 @@ export default function App() {
               ref={videoRef}
               src={selectedVideo.videos.url}
               controls
-              className={`${ isMinimized ? 'w-full h-full rounded-xl' : 'w-[90%] h-[45%] md:h-[83%] ml-5 mt-2'}`}
+              className={`${ isMinimized ? 'w-full h-full rounded-xl' : 'w-[98%] h-[45%] lg:h-[80%] md:mt-9 ml-1 mt-2'}`}
             ></video> 
 
                 {/* Expanded Player Content */}
                 {!isMinimized && (
                   <div className="px-4">
                     {/* Video Controls */}
-                    <div className="absolute top-6 right-[30px] md:top-8 md:right-[510px] flex gap-2">
+                    <div className="absolute top-6 right-[30px] lg:top-8 lg:right-[460px] md:top-8 md:right-[350px] flex gap-2">
                       <button
                         onClick={toggleMiniplayer}
                         className="bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-600 text-xs sm:text-sm"
@@ -104,7 +104,7 @@ export default function App() {
                       </button>
                     </div>
 
-                    <div className="mt-12 md:mt-10 w-full md:w-[80%]">
+                    <div className="mt-12 md:mt-10 w-full md:w-[98%]">
                       <h3 className="text-lg md:text-xl font-semibold">{selectedVideo.description}</h3>
 
                       <div className="flex justify-between items-center mt-2 text-xs md:text-sm text-gray-400">
@@ -153,7 +153,7 @@ export default function App() {
 
               {/* Recommended Videos Sidebar */}
               {!isMinimized && (
-                <div className="hidden max-h-full md:block w-[35%] p-4 bg-gray-800">
+                <div className="hidden max-h-full md:block w-[35%] p-4">
                   <h3 className="text-lg font-semibold mb-4">Recommended Videos</h3>
                   {Videosong.map((video) => (
                     <div

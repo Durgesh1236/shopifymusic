@@ -20,7 +20,6 @@ import About from './pages/About'
 import Career from './pages/Career'
 import ApplyFormJob from './pages/ApplyFormJob'
 import Videos from './pages/Videos'
-import VideoPlayer from './components/VideoPlayer'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()

@@ -41,8 +41,9 @@ export const addThumbnail = TryCatch(async (req, res) => {
     const file = req.file;
 
     const compressedImage = await sharp(file.buffer)
-        .resize(500, 500) 
+        .resize(600, 600) 
         .jpeg({ quality: 80 }) 
+        .png({ quality: 80 })
         .toBuffer();
 
     const fileUrl = getDataurl({ ...file, buffer: compressedImage });
