@@ -41,17 +41,17 @@ export default function App() {
               onClick={() => handleVideoClick(video)}
               className="bg-gray-800 cursor-pointer rounded-2xl overflow-hidden hover:scale-105 transition duration-300"
             >
-              <div className="relative">
+              <div className=" relative z-10">
                 <img
                   src={video.thumbnail.url}
                   alt={video.description}
-                  className="w-full h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
+                  className="w-full z-10 h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
                 />
-                {video.length && (
+                {/* {video.length && (
                   <span className="absolute bottom-2 right-2 bg-black bg-opacity-75 text-xs px-1 rounded">
                     {video.length}
                   </span>
-                )}
+                )} */}
               </div>
               <div className="p-4">
                 <h2 className="text-sm font-semibold mb-1 line-clamp-2">{video.description}</h2>

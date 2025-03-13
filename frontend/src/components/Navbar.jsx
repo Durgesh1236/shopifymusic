@@ -57,7 +57,7 @@ const Navbar = () => {
         <p onClick={() => navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
       </div>
 
-      <div className={`absolute top-0 bottom-0 left-0 overflow-hidden bg-black transition-all ${visible ? 'w-full' : 'w-0'}`}>
+      <div className={`absolute z-20 top-0 bottom-0 left-0 overflow-hidden bg-black transition-all ${visible ? 'w-full' : 'w-0'}`}>
         <div className='flex flex-col text-gray-600 rounded-2xl'>
           <div onClick={() => setVisible(false)} className='flex text-white mb-2 items-center gap-4 p-3 cursor-pointer'>
             <p className='h-4 text-white rotate-180'><GoArrowRight /></p>
