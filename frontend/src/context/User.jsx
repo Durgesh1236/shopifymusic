@@ -13,17 +13,14 @@ export const UserProvider = ({ children }) => {
 
     async function registerUser(name, email, password, navigate) {
         setbtnLoading(true)
-        try {
+        try {   
             const { data } = await axios.post("/api/user/register", { name, email, password })
             const { otp } = await axios.post("/api/user/send-verify-otp");
             toast.success(data.message);
-            toast.success(otp.data.message);
             setUser(data.user);
             setisAuth(true);
             setbtnLoading(false);
             navigate("/email-verify");
-            // fetchSong();
-            // fetchAlbums();
         } catch (error) {
          toast.error(error.message);
             setbtnLoading(false);

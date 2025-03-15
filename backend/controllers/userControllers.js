@@ -14,7 +14,7 @@ import { RESET_EMAIL_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } fr
     
        let user = await User.findOne({email});
     
-        if (user)
+        if(user)
              return res.status(400).json({
             message: "User Already Exists",
         });
@@ -39,8 +39,9 @@ import { RESET_EMAIL_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } fr
    //   await transporter.sendMail(mailOptions);
 
     
-        res.status(201).json({
+       return res.status(201).json({
             user,
+            success: true,
             message: "User Registered",
         });
     });

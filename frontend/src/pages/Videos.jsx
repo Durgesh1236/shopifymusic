@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Layout from '../components/Layout';
 import { SongData } from '../context/Song';
 import { SlLike, SlDislike } from "react-icons/sl";
+import { AiFillLike } from "react-icons/ai";
 
 export default function App() {
   const videoRef = useRef(null);
+  const [like, setLike] = useState(false);
+  const [countLike, setCountLike] = useState(0);
   const {
     fetchVideoSong,
     Videosong,
@@ -34,6 +37,15 @@ export default function App() {
   useEffect(()=>{
     fetchVideoSong();
   },[])
+
+  const likeHandler = () => {
+    if(like){
+      setLike(false);
+    setCountLike(countLike-1);
+    }
+    setLike(true);
+    setCountLike(countLike+1);
+  }
 
   return (
     <Layout>
@@ -111,7 +123,13 @@ export default function App() {
                         <p>1M views • 3:00</p>
                         <div className="flex space-x-4">
                           <button className="flex items-center space-x-1 hover:text-white">
-                            <SlLike /> <span>12K</span>
+                            {
+                              like ? <AiFillLike onClick={()=> setLike(false)} />                     
+                                  :<>
+                              <SlLike onClick={likeHandler}/> <span>{countLike}</span>
+                              </>
+                            }
+                            
                           </button>
                           <button className="flex items-center space-x-1 hover:text-white">
                             <SlDislike /> <span>1K</span>
