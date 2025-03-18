@@ -8,12 +8,11 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const {fetchSong, fetchAlbums} = SongData()
-    const { loginUser, btnLoading} = UserData()
+    const { loginUser, btnLoading, user} = UserData()
     const navigate = useNavigate()
-
     const submitHandler = (e) => {
         e.preventDefault();
-        loginUser(email, password, navigate, fetchSong, fetchAlbums);
+        loginUser(email, password, navigate, fetchSong, fetchAlbums, user);
     }
 
   return (

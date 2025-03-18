@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 
 const Admin = () => {
   const { user } = UserData();
-  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum, Videosong, addVideoSong } = SongData();
+  const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum, Videosong, addVideoSong,addVideoThumbnail } = SongData();
   const navigate = useNavigate();
 
   if (user && user.role !== "admin") {
@@ -60,6 +60,12 @@ const Admin = () => {
     const formData = new FormData();
     formData.append("file", file);
     addThumbnail(id, formData, setFile);
+  };
+
+  const addVideoThumbnailHandler = (id) =>{
+    const formData = new FormData();
+    formData.append("file", file);
+    addVideoThumbnail(id, formData, setFile);
   };
 
   const deleteHandler = (id) => {
@@ -178,17 +184,6 @@ const Admin = () => {
        {/* Video added */}
        <h2 className='text-2xl font-bold mb-6 mt-6'>Add Video Songs</h2>
       <form onSubmit={addVideoSongHandler} className="bg-[#181818] p-6 rounded-lg shadow-lg">
-        {/* <div className="mb-4">
-          <label className='block text-sm font-medium mb-1'>
-            Title
-          </label>
-          <input
-            type="text"
-            onChange={(e)=>setTitle(e.target.value)} 
-            value={title} 
-            placeholder='Title'
-            className='auth-input' required />
-        </div> */}
 
         <div className="mb-4">
           <label className='block text-sm font-medium mb-1'>
@@ -201,25 +196,6 @@ const Admin = () => {
             placeholder='Description'
             className='auth-input' required />
         </div>
-
-        {/* <div className="mb-4">
-          <label className='block text-sm font-medium mb-1'>
-            Type of Songs
-          </label>
-          <input
-            type="text"
-            onChange={(e)=>setSinger(e.target.value)} 
-            value={singer} 
-            placeholder='Singer'
-            className='auth-input' required />
-        </div> */}
-
-        {/* <select className='auth-input' value={Album} onChange={(e)=>setAlbum(e.target.value)} >
-          <option value="">Choose Album</option>
-          {album && album.map((item, index) => (
-            <option value={item._id} key={index}>{item.title}</option>
-          ))}
-        </select> */}
 
         <div className="mb-4">
           <label className='block text-sm font-medium mb-1'>
@@ -277,7 +253,7 @@ const Admin = () => {
 
 
       <div className="mt-8">
-        <h3 className='text-xl font-semibold mb-4'>Added Songs</h3>
+        <h3 className='text-xl font-semibold mb-4'>Added Video Songs</h3>
         <div className="flex justify-center md:justify-start gap-2 items-center flex-wrap">
           {
             Videosong && Videosong.map((item,index)=>(
@@ -288,7 +264,7 @@ const Admin = () => {
                   :
                   <div className="flex flex-col justify-center items-center gap-2">
                     <input type='file' onChange={fileChangeHandler}/>
-                    <button onClick={()=>addThumbnailHandler(item._id)} className='bg-green-500 text-white px-2 py-1 rounded'>Add Thumbnail</button>
+                    <button onClick={()=>addVideoThumbnailHandler(item._id)} className='bg-green-500 text-white px-2 py-1 rounded'>Add Thumbnail</button>
                   </div>
                 }
                 <h4 className='text-sm text-gray-500'>{item.description}</h4>

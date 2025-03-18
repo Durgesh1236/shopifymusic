@@ -9,7 +9,7 @@ const EmailVerify = () => {
   axios.defaults.withCredentials = true;
   const inputRefs = React.useRef([]);
   const navigate = useNavigate();
-  const {verifyEmailUser, resendOtp} = UserData();
+  const {verifyEmailUser, resendOtp, btnLoading} = UserData();
   const { fetchSong, fetchAlbums } = SongData();
 
   const handleInput = (e, index) => {
@@ -64,7 +64,14 @@ const EmailVerify = () => {
             ))}
         </div>
         
-        <button className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Verify Email</button>
+        {/* <button className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Verify Email</button> */}
+        <button disabled={btnLoading} className='w-full py-3 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>
+                {
+                    btnLoading ? 
+                    "Please Wait..."
+                    : "Verify Email"
+                }
+            </button>
         <button onClick={resendOtpHandler} className='w-full py-3 mt-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Resend Otp</button>
       </form>
     </div>

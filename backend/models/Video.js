@@ -17,6 +17,26 @@ const schema = new mongoose.Schema({
         id: String,
         url: String,
     },
+    likes: {
+        type: Number,
+        default: 0,
+      },
+      dislikes: {
+        type: Number,
+        default: 0,
+      },
+      likedBy: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      ],
+      dislikedBy: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+    ],
 }, {
     timestamps: true,
 });

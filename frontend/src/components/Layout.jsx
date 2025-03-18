@@ -1,10 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SideBar from './SideBar'
 import Navbar from './Navbar'
 import Player from './Player'
-import SearchBarVisible from './Search'
-import EmailVerify from '../pages/EmailVerify'
-import Music from '../pages/Music'
 
 
 const Layout = ({ children }) => {

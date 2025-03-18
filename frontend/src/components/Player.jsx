@@ -6,87 +6,88 @@ import { FaPause, FaPlay } from "react-icons/fa6";
 import { UserData } from '../context/User';
 
 const Player = () => {
-  const { singlesong, fetchSingleSong, selectedSong, isPlaying, setIsPlaying, previousMusic, nextMusic } = SongData();
+  const { singlesong, fetchSingleSong, 
+    selectedSong, isPlaying, setIsPlaying, 
+    previousMusic, nextMusic, handlePlayPause, 
+    audioRef, bgcolor, setBgColor,
+    volume, setVolume, handleVolumeChange,
+    generateRandomColor, progress, setProgress,
+     duration, setDuration, handleProgressChange } = SongData();
   const {addToHistory} = UserData();
-  const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const audioRef = useRef(null);
-  const [volume, setVolume] = useState(1);
-  const [bgcolor, setBgColor] = useState("#000000")
+  // const [progress, setProgress] = useState(0);
+  // const [duration, setDuration] = useState(0);
+  // const audioRef = useRef(null);
+  // const [volume, setVolume] = useState(1);
+  // const [bgcolor, setBgColor] = useState("#000000")
   const intervalRef = useRef(null); 
   
-  const generateRandomColor = () => {
-    const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-    setBgColor(randomColor);
-    // document.body.style.backgroundColor = bgcolor;
-  };
   useEffect(()=>{
     document.body.style.backgroundColor = bgcolor;
   },[bgcolor])
     
   
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-      setBgColor("#000000")
-    } 
-    else {
-      audioRef.current.play();
-      addToHistory(singlesong._id);
-    }
-    setIsPlaying(!isPlaying);
-  };
+  // const handlePlayPause = () => {
+  //   if (isPlaying) {
+  //     audioRef.current.pause();
+  //     setBgColor("#000000")
+  //   } 
+  //   else {
+  //     audioRef.current.play();
+  //     addToHistory(singlesong._id);
+  //   }
+  //   setIsPlaying(!isPlaying);
+  // };
 
   
-  const handleVolumeChange = (e) => {
-    const newVolume = e.target.value;
-    setVolume(newVolume);
-    audioRef.current.volume = newVolume;
-  };
+  // const handleVolumeChange = (e) => {
+  //   const newVolume = e.target.value;
+  //   setVolume(newVolume);
+  //   audioRef.current.volume = newVolume;
+  // };
 
   useEffect(() => {
     fetchSingleSong();
   }, [selectedSong]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) {
-      return;
-    }
+  // useEffect(() => {
+  //   const audio = audioRef.current;
+  //   if (!audio) {
+  //     return;
+  //   }
 
-    const handleLoadedMetaData = () => {
-      setDuration(audio.duration);
-    };
+  //   const handleLoadedMetaData = () => {
+  //     setDuration(audio.duration);
+  //   };
 
-    const handleTimeUpdate = () => {
-      setProgress(audio.currentTime);
-    };
+  //   const handleTimeUpdate = () => {
+  //     setProgress(audio.currentTime);
+  //   };
 
-    audio.addEventListener("loadedmetadata", handleLoadedMetaData);
-    audio.addEventListener("timeupdate", handleTimeUpdate);
+  //   audio.addEventListener("loadedmetadata", handleLoadedMetaData);
+  //   audio.addEventListener("timeupdate", handleTimeUpdate);
 
-    return () => {
-      audio.removeEventListener("loadedmetadata", handleLoadedMetaData);
-      audio.removeEventListener("timeupdate", handleTimeUpdate);
-    };
-  }, [singlesong]);
+  //   return () => {
+  //     audio.removeEventListener("loadedmetadata", handleLoadedMetaData);
+  //     audio.removeEventListener("timeupdate", handleTimeUpdate);
+  //   };
+  // }, [singlesong]);
 
 
-  const handleProgressChange = (e) => {
-    const newTime = (e.target.value / 100) * duration;
-    audioRef.current.currentTime = newTime;
-    setProgress(newTime);
-  };
+  // const handleProgressChange = (e) => {
+  //   const newTime = (e.target.value / 100) * duration;
+  //   audioRef.current.currentTime = newTime;
+  //   setProgress(newTime);
+  // };
 
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(generateRandomColor, 2000);
-    } else {
-      clearInterval(intervalRef.current);
-    }
+  // useEffect(() => {
+  //   if (isPlaying) {
+  //     intervalRef.current = setInterval(generateRandomColor, 2000);
+  //   } else {
+  //     clearInterval(intervalRef.current);
+  //   }
 
-    return () => clearInterval(intervalRef.current);
-  }, [isPlaying]);
+  //   return () => clearInterval(intervalRef.current);
+  // }, [isPlaying]);
 
   return (
     <div>
@@ -138,7 +139,7 @@ const Player = () => {
                 <GrChapterPrevious />
               </span>
 
-              <button onClick={handlePlayPause} className="bg-white text-black rounded-full p-2">
+              <button onClick={()=> {handlePlayPause(); addToHistory(singlesong._id)}} className="bg-white text-black rounded-full p-2">
                 {isPlaying ? <FaPause /> : <FaPlay />}
               </button>
               <span onClick={nextMusic} className="cursor-pointer">

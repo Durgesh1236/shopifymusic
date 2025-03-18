@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { toast } from 'react-toastify';
 
 const SongContext = createContext();
@@ -19,6 +19,12 @@ export const SongProvider = ({ children }) => {
     const [albumData, setAlbumData] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [isMinimized, setIsMinimized] = useState(false);
+    const [volume, setVolume] = useState(1);
+      const [bgcolor, setBgColor] = useState("#000000")
+      const [progress, setProgress] = useState(0);
+        const [duration, setDuration] = useState(0);
+    const audioRef = useRef(null);
+    const intervalRef = useRef(null);
 
     async function fetchSong() {
         try {
@@ -43,6 +49,26 @@ export const SongProvider = ({ children }) => {
 
         }
     }
+
+    async function likeVideo(videoId) {
+        try {
+            const { data } = await axios.post(`/api/video/${videoId}/like`);
+            toast.success(data.message);
+            fetchVideoSong(); 
+        } catch (error) {
+            console.log(error.response?.data?.message || error.message);
+        }
+    }
+
+    async function dislikeVideo(videoId) {
+        try {
+            const { data } = await axios.post(`/api/video/${videoId}/dislike`);
+            fetchVideoSong(); 
+        } catch (error) {
+            console.log(error.response?.data?.message || error.message);
+        }
+    }
+    
 
     async function fetchSingleSong() {
         try {
@@ -117,7 +143,7 @@ export const SongProvider = ({ children }) => {
         }
     }
 
-    async function addThumbnail(id, formData, setFile) {
+    async function addVideoThumbnail(id, formData, setFile) {
         setLoading(true)
         try {
             const { data } = await axios.post("/api/video/" + id, formData);
@@ -196,6 +222,68 @@ export const SongProvider = ({ children }) => {
         }
     }
 
+    const handlePlayPause = () => {
+        if (isPlaying) {
+          audioRef.current.pause();
+          setBgColor("#000000")
+        } 
+        else {
+          audioRef.current.play()
+        //   addToHistory(singlesong._id);
+        }
+        setIsPlaying(!isPlaying);
+      }
+
+      const handleVolumeChange = (e) => {
+        const newVolume = e.target.value;
+        setVolume(newVolume);
+        audioRef.current.volume = newVolume;
+      };
+
+      const generateRandomColor = () => {
+        const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        setBgColor(randomColor);
+      };
+
+       useEffect(() => {
+          const audio = audioRef.current;
+          if (!audio) {
+            return;
+          }
+      
+          const handleLoadedMetaData = () => {
+            setDuration(audio.duration);
+          };
+      
+          const handleTimeUpdate = () => {
+            setProgress(audio.currentTime);
+          };
+      
+          audio.addEventListener("loadedmetadata", handleLoadedMetaData);
+          audio.addEventListener("timeupdate", handleTimeUpdate);
+      
+          return () => {
+            audio.removeEventListener("loadedmetadata", handleLoadedMetaData);
+            audio.removeEventListener("timeupdate", handleTimeUpdate);
+          };
+        }, [singlesong]);
+
+        const handleProgressChange = (e) => {
+            const newTime = (e.target.value / 100) * duration;
+            audioRef.current.currentTime = newTime;
+            setProgress(newTime);
+          };
+
+          useEffect(() => {
+              if (isPlaying) {
+                intervalRef.current = setInterval(generateRandomColor, 2000);
+              } else {
+                clearInterval(intervalRef.current);
+              }
+          
+              return () => clearInterval(intervalRef.current);
+            }, [isPlaying]);
+
 
     return <SongContext.Provider value={{
         song,
@@ -227,6 +315,22 @@ export const SongProvider = ({ children }) => {
         isMinimized, 
         setIsMinimized,
         fetchVideoSong,
+        addVideoThumbnail,
+        likeVideo,
+        dislikeVideo,
+        handlePlayPause,
+        audioRef,
+        volume,
+        setVolume,
+        bgcolor,
+        setBgColor,
+        handleVolumeChange,
+        generateRandomColor,
+        progress,
+        setProgress,
+        duration,
+        setDuration,
+        handleProgressChange
     }}>
         {children}
     </SongContext.Provider>

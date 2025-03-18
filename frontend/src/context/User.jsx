@@ -18,7 +18,6 @@ export const UserProvider = ({ children }) => {
             const { otp } = await axios.post("/api/user/send-verify-otp");
             toast.success(data.message);
             setUser(data.user);
-            setisAuth(true);
             setbtnLoading(false);
             navigate("/email-verify");
         } catch (error) {

@@ -1,21 +1,32 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Layout from '../components/Layout';
 import { SongData } from '../context/Song';
-import { SlLike, SlDislike } from "react-icons/sl";
-import { AiFillLike } from "react-icons/ai";
+
+import { BiLike, BiSolidLike } from "react-icons/bi";
+
+import { BiDislike } from "react-icons/bi";
+import { BiSolidDislike } from "react-icons/bi";
 
 export default function App() {
   const videoRef = useRef(null);
   const [like, setLike] = useState(false);
-  const [countLike, setCountLike] = useState(0);
+  const [countLike, setCountLike] = useState("0");
+  const [dislike, setDisLike] = useState(false);
+  const [countDisLike, setCountDisLike] = useState(0);
+  
   const {
     fetchVideoSong,
     Videosong,
     selectedVideo,
     setSelectedVideo,
     isMinimized,
-    setIsMinimized
+    setIsMinimized,
+    likeVideo,
+    dislikeVideo
   } = SongData();
+  
+
+  // console.log(countLike)
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
@@ -37,15 +48,6 @@ export default function App() {
   useEffect(()=>{
     fetchVideoSong();
   },[])
-
-  const likeHandler = () => {
-    if(like){
-      setLike(false);
-    setCountLike(countLike-1);
-    }
-    setLike(true);
-    setCountLike(countLike+1);
-  }
 
   return (
     <Layout>
@@ -122,17 +124,20 @@ export default function App() {
                       <div className="flex justify-between items-center mt-2 text-xs md:text-sm text-gray-400">
                         <p>1M views • 3:00</p>
                         <div className="flex space-x-4">
-                          <button className="flex items-center space-x-1 hover:text-white">
-                            {
-                              like ? <AiFillLike onClick={()=> setLike(false)} />                     
+                          <button className="flex items-center space-x-1">
+                            { 
+                              like ? <><BiSolidLike className='text-xl' onClick={()=> {setLike(false); likeVideo(selectedVideo._id); setCountLike(selectedVideo.likes)}} /> 
+                              <span>{countLike}</span> </>                   
                                   :<>
-                              <SlLike onClick={likeHandler}/> <span>{countLike}</span>
+                              <BiLike className='text-xl' onClick={()=> {setLike(true); likeVideo(selectedVideo._id); setCountDisLike(selectedVideo.dislikes)}}/> <span>{countLike}</span>
                               </>
                             }
                             
                           </button>
                           <button className="flex items-center space-x-1 hover:text-white">
-                            <SlDislike /> <span>1K</span>
+                         { dislike ? <><BiSolidDislike className='text-xl' onClick={()=> {setDisLike(false); setCountDisLike(dislike-1)}}/><span>{countDisLike}</span></> :
+                            <><BiDislike className='text-xl' onClick={()=> {setDisLike(true); setCountDisLike(dislike+1)}}/> <span>{countDisLike}</span></>
+                         }
                           </button>
                           <button className="flex items-center space-x-1 hover:text-white">
                             🔗 Share

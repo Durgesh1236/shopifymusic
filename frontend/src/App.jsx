@@ -34,8 +34,8 @@ const App = () => {
             <Route path='/album/:id' element={isAuth ? <Album /> : <Login />} />
             <Route path='/admin' element={isAuth ? <Admin /> : <Login />} />
             <Route path='/login' element={isAuth ? <Home /> : <Login />} />
-            <Route path='/register' element={isAuth ? <Home /> : <Register />} />
-            <Route path='/email-verify' element={<EmailVerify />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/email-verify' element={isAuth ? <Home/> : <EmailVerify />} />
             <Route path='/reset-password' element={<ResetPassword />} />
             <Route path='/music' element={<Music />} />
             <Route path='/search' element={<Search />} />

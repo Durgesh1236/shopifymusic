@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-// import { assets } from '../assets/assets'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserData } from '../context/User';
 import { GoArrowRight } from "react-icons/go";
 import { GoArrowLeft } from "react-icons/go";
 import { HiMenuAlt2 } from "react-icons/hi";
-// import { IoSearch } from "react-icons/io5";
 import { MdInstallMobile } from "react-icons/md";
 import { assets } from '../assets/assets';
 
