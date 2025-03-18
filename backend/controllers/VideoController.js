@@ -99,11 +99,11 @@ export const likeVideo = TryCatch(async (req, res) => {
         });
     }
 
-    // If user disliked it before, remove dislike
-    if (dislikedIndex !== -1) {
-        video.dislikedBy.splice(dislikedIndex, 1);
-        video.dislikes -= 1;
-    }
+    // // If user disliked it before, remove dislike
+    // if (dislikedIndex !== -1) {
+    //     video.dislikedBy.splice(dislikedIndex, 1);
+    //     video.dislikes -= 1;
+    // }
 
     // Add like
     video.likedBy.push(userId);

@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
           {children}
         </div>
       </div>
-      <Player />
+      {/* <Player /> */}
     </div>
   )
 }

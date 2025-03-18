@@ -20,6 +20,7 @@ import About from './pages/About'
 import Career from './pages/Career'
 import ApplyFormJob from './pages/ApplyFormJob'
 import Videos from './pages/Videos'
+import Player from './components/Player'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()
@@ -37,8 +38,8 @@ const App = () => {
             <Route path='/register' element={<Register />} />
             <Route path='/email-verify' element={isAuth ? <Home/> : <EmailVerify />} />
             <Route path='/reset-password' element={<ResetPassword />} />
-            <Route path='/music' element={<Music />} />
-            <Route path='/search' element={<Search />} />
+            <Route path='/music' element={isAuth ? <Music /> : <Login/>} />
+            <Route path='/search' element={isAuth ? <Search /> : <Login/>} />
             <Route path='/my-profile' element={ isAuth ? <MyProfile/> : <Login/>}/>
             <Route path='/contact' element={isAuth ? <Contact/> : <Login/>} />
             <Route path='/about' element={isAuth? <About/> : <Login/>} />
@@ -46,9 +47,9 @@ const App = () => {
             <Route path='/career' element={<Career/>}/>
             <Route path='/career/form' element={<ApplyFormJob/>}/>
             <Route path='/shopify/forever' element={<iframe src="https://forever-frontend-two.vercel.app" width="100%" height="1000px" className='bg-white w-full max-h-screen' title="External Site"></iframe>}/>
-            {/* <Route path='/shopify/video-tube' element={<iframe src="https://vidtube-s6si.vercel.app/" width="100%" height="800px" className='bg-white' title="External Site"></iframe>}/> */}
             <Route path='/shopify/vedantaAI' element={<iframe src="https://vedanta-ai.vercel.app" width="100%" height="1000px" className='bg-white w-full max-h-screen' title="External Site"></iframe>}/>
           </Routes>
+          { isAuth ? <Player/> : <></>}
         </BrowserRouter>
       }
     </>

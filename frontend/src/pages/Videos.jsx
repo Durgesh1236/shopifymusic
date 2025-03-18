@@ -6,6 +6,7 @@ import { BiLike, BiSolidLike } from "react-icons/bi";
 
 import { BiDislike } from "react-icons/bi";
 import { BiSolidDislike } from "react-icons/bi";
+import { UserData } from '../context/User';
 
 export default function App() {
   const videoRef = useRef(null);
@@ -13,7 +14,7 @@ export default function App() {
   const [countLike, setCountLike] = useState("0");
   const [dislike, setDisLike] = useState(false);
   const [countDisLike, setCountDisLike] = useState(0);
-  
+  const {user} = UserData()
   const {
     fetchVideoSong,
     Videosong,
@@ -24,9 +25,6 @@ export default function App() {
     likeVideo,
     dislikeVideo
   } = SongData();
-  
-
-  // console.log(countLike)
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
@@ -126,17 +124,17 @@ export default function App() {
                         <div className="flex space-x-4">
                           <button className="flex items-center space-x-1">
                             { 
-                              like ? <><BiSolidLike className='text-xl' onClick={()=> {setLike(false); likeVideo(selectedVideo._id); setCountLike(selectedVideo.likes)}} /> 
-                              <span>{countLike}</span> </>                   
+                              selectedVideo.likedBy.includes(user._id) ? <><BiSolidLike className='text-2xl text-white' onClick={()=> {setLike(true); likeVideo(selectedVideo._id)}} /> 
+                              <span>{selectedVideo.likes}</span> </>                   
                                   :<>
-                              <BiLike className='text-xl' onClick={()=> {setLike(true); likeVideo(selectedVideo._id); setCountDisLike(selectedVideo.dislikes)}}/> <span>{countLike}</span>
+                              <BiLike className='text-2xl text-white' onClick={()=> { setLike(true); likeVideo(selectedVideo._id);}}/> <span>{selectedVideo.likes}</span>
                               </>
                             }
                             
                           </button>
-                          <button className="flex items-center space-x-1 hover:text-white">
-                         { dislike ? <><BiSolidDislike className='text-xl' onClick={()=> {setDisLike(false); setCountDisLike(dislike-1)}}/><span>{countDisLike}</span></> :
-                            <><BiDislike className='text-xl' onClick={()=> {setDisLike(true); setCountDisLike(dislike+1)}}/> <span>{countDisLike}</span></>
+                          <button className="flex items-center space-x-1 text-white">
+                         { dislike ? <><BiSolidDislike className='text-2xl' onClick={()=> {setDisLike(false); setCountDisLike(dislike-1)}}/><span>{countDisLike}</span></> :
+                            <><BiDislike className='text-2xl' onClick={()=> {setDisLike(true); setCountDisLike(dislike+1)}}/> <span>{countDisLike}</span></>
                          }
                           </button>
                           <button className="flex items-center space-x-1 hover:text-white">

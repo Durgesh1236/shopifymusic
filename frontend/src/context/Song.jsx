@@ -25,7 +25,8 @@ export const SongProvider = ({ children }) => {
         const [duration, setDuration] = useState(0);
     const audioRef = useRef(null);
     const intervalRef = useRef(null);
-
+ console.log(selectedVideo);
+ 
     async function fetchSong() {
         try {
             const { data } = await axios.get("/api/song/all");
@@ -229,7 +230,6 @@ export const SongProvider = ({ children }) => {
         } 
         else {
           audioRef.current.play()
-        //   addToHistory(singlesong._id);
         }
         setIsPlaying(!isPlaying);
       }
