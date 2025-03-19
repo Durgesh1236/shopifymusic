@@ -25,7 +25,6 @@ export const SongProvider = ({ children }) => {
         const [duration, setDuration] = useState(0);
     const audioRef = useRef(null);
     const intervalRef = useRef(null);
- console.log(selectedVideo);
  
     async function fetchSong() {
         try {

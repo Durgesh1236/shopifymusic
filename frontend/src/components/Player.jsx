@@ -27,7 +27,7 @@ const Player = () => {
   return (
     <div>
     {singlesong && (
-      <div className="fixed bottom-0 left-0 right-0 h-24 text-white flex items-center justify-between px-6 z-40">
+      <div className="fixed overflow-hidden bottom-0 left-0 right-0 h-24 text-white flex items-center justify-between px-6 z-40">
         
         {/* Song Info Section */}
         <div className="flex items-center gap-4 w-1/3">
