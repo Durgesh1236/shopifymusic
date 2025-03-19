@@ -27,8 +27,10 @@ const Player = () => {
   return (
     <div>
     {singlesong && (
-      <div className="fixed bottom-0 left-0 right-0 h-24 text-white flex items-center justify-between px-6 z-40"
-      // style={{ backgroundColor: bgcolor }}
+      <div className="fixed bottom-0 left-0 right-0 h-20 text-white flex items-center justify-between px-6 z-40"
+      style={{ 
+        transition: 'background-color 0.5s ease',
+        backgroundColor: bgcolor }}
       >
         
         {/* Song Info Section */}
@@ -44,7 +46,7 @@ const Player = () => {
         </div>
   
         {/* Player Controls */}
-        <div className="flex flex-col md:mt-3 items-center justify-center gap-1 w-1/3">
+        <div className="flex flex-col md:mt-1 items-center justify-center gap-1 w-1/3">
           {singlesong && singlesong.audio && (
             <>
               <audio
