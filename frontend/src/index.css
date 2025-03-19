@@ -7,6 +7,9 @@ body {
     font-family: "poppins", sans-serif;
     @apply bg-black;
     transition: background-color 0.5s ease;
+    background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 .auth-input{
