@@ -4,7 +4,7 @@ import { UserData } from '../context/User';
 import { SongData } from '../context/Song';
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 
-const SongItem = ({name,image,desc,id}) => {
+const SongItem = ({name,image,id}) => {
 
   const [saved, setSaved] = useState(false)
   const { setSelectedSong, isPlaying, setIsPlaying } = SongData();
@@ -37,8 +37,8 @@ const SongItem = ({name,image,desc,id}) => {
                   </button>
               </div>
       </div>
-      <p className='font-bold mt-2 mb-1'>{name.slice(0,12)}..</p>
-      <p className='text-slate-200 text-sm'>{desc.slice(0,18)}..</p>
+      <p className='font-bold mt-2 mb-1'>{name.slice(0,15)}..</p>
+      {/* <p className='text-slate-200 text-sm'>{desc.slice(0,18)}..</p> */}
     </div>
   )
 }

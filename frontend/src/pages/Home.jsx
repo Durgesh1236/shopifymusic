@@ -92,6 +92,22 @@ const Home = () => {
           </div>
         </div>
 
+        <div className="mb-4">
+          <h1 className="my-5 font-bold text-2xl">Best Song Suggestion For You</h1>
+          <div className="flex overflow-auto">
+            {song
+              .filter((song) => song.description === "Suggest Song")
+              .map((item, index) => (
+                <SongItem key={index}
+                name={item.title}
+                // desc={item.description}
+                id={item._id}
+                image={item.thumbnail.url}
+              />
+              ))}
+          </div>
+        </div>
+
         {/* User Play History */}
 
         {myHistory ?
@@ -103,7 +119,7 @@ const Home = () => {
                   {/* Song Item */}
                   <SongItem
                     name={item.title}
-                    desc={item.description}
+                    // desc={item.description}
                     id={item._id}
                     image={item.thumbnail.url}
                   />
@@ -127,7 +143,11 @@ const Home = () => {
             {song
               .filter((song) => song.description === "Bhakti Song")
               .map((item, index) => (
-                <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description} 
+                image={item.thumbnail.url} 
+                id={item._id} />
               ))}
           </div>
         </div>
@@ -138,7 +158,26 @@ const Home = () => {
             {song
               .filter((song) => song.description === "New Song")
               .map((item, index) => (
-                <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description} 
+                image={item.thumbnail.url} 
+                id={item._id} />
+              ))}
+          </div>
+        </div>
+
+        <div className='mb-4'>
+          <h1 className='my-5 font-bold text-2xl'>Best Punjabi Song</h1>
+          <div className='flex overflow-auto'>
+            {song
+              .filter((song) => song.description === "Punjabi Song")
+              .map((item, index) => (
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description} 
+                image={item.thumbnail.url} 
+                id={item._id} />
               ))}
           </div>
         </div>
@@ -149,7 +188,11 @@ const Home = () => {
             {song
               .filter((song) => song.description === "90's Old Song")
               .map((item, index) => (
-                <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description}
+                 image={item.thumbnail.url} 
+                 id={item._id} />
               ))}
           </div>
         </div>
@@ -160,7 +203,11 @@ const Home = () => {
             {song
               .filter((song) => song.description === "Bhojpuri Song")
               .map((item, index) => (
-                <SongItem key={index} name={item.title} desc={item.description} image={item.thumbnail.url} id={item._id} />
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description} 
+                image={item.thumbnail.url} 
+                id={item._id} />
               ))}
           </div>
         </div>
