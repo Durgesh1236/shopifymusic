@@ -198,6 +198,36 @@ const Home = () => {
         </div>
 
         <div className='mb-4'>
+          <h1 className='my-5 font-bold text-2xl'>Best 80's Old Song</h1>
+          <div className='flex overflow-auto'>
+            {song
+              .filter((song) => song.description === "80's old Song")
+              .map((item, index) => (
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description}
+                 image={item.thumbnail.url} 
+                 id={item._id} />
+              ))}
+          </div>
+        </div>
+
+        <div className='mb-4'>
+          <h1 className='my-5 font-bold text-2xl'>Best Wedding Songs</h1>
+          <div className='flex overflow-auto'>
+            {song
+              .filter((song) => song.description === "Wedding Song")
+              .map((item, index) => (
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description}
+                 image={item.thumbnail.url} 
+                 id={item._id} />
+              ))}
+          </div>
+        </div>
+
+        <div className='mb-4'>
           <h1 className='my-5 font-bold text-2xl'>Best Bhojpuri Songs</h1>
           <div className='flex overflow-auto'>
             {song
