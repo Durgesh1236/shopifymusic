@@ -62,30 +62,6 @@ export const UserProvider = ({ children }) => {
       useEffect(()=>{
         fetchTotalUsers();
       },[])
-      
-
-    // async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
-    //     setbtnLoading(true)
-
-    //     try {
-    //         const { data } = await axios.post("/api/user/login", { email, password });
-    //         if(data.success){
-    //         toast.success(data.message);
-    //         setUser(data.user);
-    //         setisAuth(true);
-    //         setbtnLoading(false);
-    //         navigate("/");
-    //         fetchSong();
-    //         fetchAlbums();
-    //         } else {
-    //             toast.error(data.message);
-    //             setbtnLoading(false);
-    //         }
-    //     } catch (error) {
-    //         console.log(error.message);
-    //         setbtnLoading(false)
-    //     }
-    // }
 
     async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
         setbtnLoading(true);

@@ -72,7 +72,7 @@ const EmailVerify = () => {
                     : "Verify Email"
                 }
             </button>
-        <button onClick={resendOtpHandler} className='w-full py-3 mt-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Resend Otp</button>
+        <button onClick={resendOtpHandler} className='w-full py-3 mt-2 bg-gradient-to-r from-indigo-500 to-indigo-900 text-white rounded-full'>Send Otp</button>
       </form>
     </div>
   )

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Sidebar from '../AdminCompo.jsx/Sidebar';
+import Sidebar from '../AdminCompo/Sidebar';
 import AddSong from './AddSong';
 import AddAlbum from './AddAlbum';
 import ListAlbum from './ListAlbum';
 import ListSong from './ListSong';
-// import AdminNavbar from '../AdminCompo/AdminNavbar';
 import Userdata from './UserAlldata'
-import AdminNavbar from '../AdminCompo.jsx/AdminNav';
+import AdminNavbar from '../AdminCompo/AdminNav';
 
 
 const AdminHome = () => {

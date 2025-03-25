@@ -245,8 +245,6 @@ export const sendResetOtp = async (req, res) => {
         from: process.env.SENDER_EMAIL,
         to: user.email,
         subject: 'Password Reset OTP',
-      //   text: `Your OTP for resetting your password is ${otp}.
-      //   Use this OTP to proceed with resetting your password.`
       html: RESET_EMAIL_TEMPLATE(otp)
      }
      await transporter.sendMail(mailOption);
@@ -365,18 +363,7 @@ export const uploadImage = TryCatch(async (req, res) => {
 
 export const saveToHistory = TryCatch(async(req,res) =>{
    const user = await User.findById(req.user._id);
-   // if(user.playlist.includes(req.params.id)){
-   //     const index = user.playlist.indexOf(req.params.id)
-
-   //     user.playlist.splice(index,1);
-
-   //     await user.save();
-
-   //    return res.json({
-   //         message: "Removed from playlist",
-   //     });
-   // }
-
+   
    if (user.playhistory.includes(req.params.id)) {
       return res.json({
           message: "Song already in history",
@@ -423,7 +410,7 @@ export const getTotalUsers = TryCatch(async (req, res) => {
    const onlineUsers = await User.find({ isOnline: true }).select('name email');
    const count = onlineUsers.length;
 
-   res.json({
+  return res.json({
        success: true,
        count,
        users: onlineUsers
