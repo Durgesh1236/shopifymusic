@@ -5,8 +5,9 @@ import AddSong from './AddSong';
 import AddAlbum from './AddAlbum';
 import ListAlbum from './ListAlbum';
 import ListSong from './ListSong';
-import AdminNavbar from '../AdminCompo.jsx/AdminNavbar';
-import Userdata from './UserData';
+import AdminNavbar from '../AdminCompo/AdminNavbar';
+import Userdata from './UserAlldata'
+
 
 const AdminHome = () => {
 
