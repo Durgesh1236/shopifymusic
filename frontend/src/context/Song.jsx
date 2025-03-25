@@ -95,7 +95,7 @@ export const SongProvider = ({ children }) => {
         }
     }
 
-    async function addSong(formData, setTitle, setDescription, setFile, setSinger, setAlbum) {
+    async function addSong(formData, setTitle, setDescription, setFile, setSinger, setAlbum, setvisibleThumbnail) {
         setLoading(true)
         try {
             const { data } = await axios.post("/api/song/new", formData);
@@ -105,6 +105,7 @@ export const SongProvider = ({ children }) => {
             setTitle("");
             setDescription("");
             setFile(null);
+            setvisibleThumbnail(true);
             setSinger("");
             setAlbum("");
         } catch (error) {
@@ -113,7 +114,7 @@ export const SongProvider = ({ children }) => {
         }
     }
 
-    async function addThumbnail(id, formData, setFile) {
+    async function addThumbnail(id, formData, setFile, setvisibleThumbnail) {
         setLoading(true)
         try {
             const { data } = await axios.post("/api/song/" + id, formData);
@@ -121,6 +122,7 @@ export const SongProvider = ({ children }) => {
             setLoading(false);
             fetchSong();
             setFile(null);
+            setvisibleThumbnail(false);
         } catch (error) {
             toast.error(error.response.data.message);
             setLoading(false);

@@ -21,6 +21,8 @@ import Career from './pages/Career'
 import ApplyFormJob from './pages/ApplyFormJob'
 import Videos from './pages/Videos'
 import Player from './components/Player'
+import AdminHome from './shopify-admin/AdminPage.jsx/AdminHome'
+import AddSong from './shopify-admin/AdminPage.jsx/AddSong'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()
@@ -33,7 +35,8 @@ const App = () => {
             <Route path='/' element={isAuth ? <Home /> : <Login />} />
             <Route path='/playlist' element={isAuth ? <PlayList user={user} /> : <Login />} />
             <Route path='/album/:id' element={isAuth ? <Album /> : <Login />} />
-            <Route path='/admin' element={isAuth ? <Admin /> : <Login />} />
+            {/* <Route path='/admin' element={isAuth ? <Admin /> : <Login />} /> */}
+            <Route path='/admins/*' element={isAuth ? <AdminHome /> : <Login />} />
             <Route path='/login' element={isAuth ? <Home /> : <Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/email-verify' element={isAuth ? <Home/> : <EmailVerify />} />

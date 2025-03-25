@@ -48,16 +48,11 @@ const SideBar = () => {
           <Link to={"/shopify/vedantaAI"} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
            <img src={assets.ai_logo} className='w-7 mr-2 ml-[-5px]' alt="" /> Chat With AI
            </Link>
-
-           {/* <Link to={'/shopify/video-tube'} onClick={() => setVisible(false)} className='py-2 pl-6 flex text-white w-full hover:bg-[#ffffff26] rounded-lg cursor-pointer'>
-           <img src={assets.vid_img} className='w-7 mr-2 ml-[-5px]' alt="" /> VideoTube
-           </Link> */}
         </div>
 
-        
         {
              user && user.role === "admin" ? (
-                <button onClick={()=>navigate("/admin")} className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4 ml-6'>Admin Dashboard</button>
+                <button onClick={()=>navigate("/admins/*")} className='px-4 py-1.5 bg-white text-black text-[15px] rounded-full mt-4 ml-6'>Admin Dashboard</button>
              ) : ""
         }
      </div>

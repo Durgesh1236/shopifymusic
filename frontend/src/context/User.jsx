@@ -10,6 +10,8 @@ export const UserProvider = ({ children }) => {
     const [btnLoading, setbtnLoading] = useState(false)
     const [loading, setLoading] = useState(true)
     const [selectedJob, setSelectedJob] = useState(null);
+    const [totalusers, setTotalUsers] = useState(0);
+    const [onlineUsers, setOnlineUsers] = useState(0);
 
     async function registerUser(name, email, password, navigate) {
         setbtnLoading(true)
@@ -46,28 +48,77 @@ export const UserProvider = ({ children }) => {
         }
     }
 
-    async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
-        setbtnLoading(true)
+    const fetchTotalUsers = async () => {
+        try {
+          const { data } = await axios.get("/api/user/total-users");
+          const resOnlineUsers = await axios.get('/api/user/online-users');
+        
+            setTotalUsers(data.totalUsers);
+            setOnlineUsers(resOnlineUsers.data.count)
+        } catch (error) {
+          console.error("Error fetching total users:", error);
+        }
+      };
+      useEffect(()=>{
+        fetchTotalUsers();
+      },[])
+      
 
+    // async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
+    //     setbtnLoading(true)
+
+    //     try {
+    //         const { data } = await axios.post("/api/user/login", { email, password });
+    //         if(data.success){
+    //         toast.success(data.message);
+    //         setUser(data.user);
+    //         setisAuth(true);
+    //         setbtnLoading(false);
+    //         navigate("/");
+    //         fetchSong();
+    //         fetchAlbums();
+    //         } else {
+    //             toast.error(data.message);
+    //             setbtnLoading(false);
+    //         }
+    //     } catch (error) {
+    //         console.log(error.message);
+    //         setbtnLoading(false)
+    //     }
+    // }
+
+    async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
+        setbtnLoading(true);
+    
         try {
             const { data } = await axios.post("/api/user/login", { email, password });
-            if(data.success){
-            toast.success(data.message);
-            setUser(data.user);
-            setisAuth(true);
-            setbtnLoading(false);
-            navigate("/");
-            fetchSong();
-            fetchAlbums();
+    
+            if (data.success) {
+                setUser(data.user);
+                setbtnLoading(false);
+                if (data.user.isAccountVerified) {
+                    toast.success(data.message);
+                    setisAuth(true);
+                    navigate("/"); 
+                    fetchSong();
+                    fetchAlbums();
+                } else {
+                    toast.warning("Your Account is not verified!")
+                    navigate("/email-verify");
+                }
+    
             } else {
                 toast.error(data.message);
                 setbtnLoading(false);
             }
+    
         } catch (error) {
             console.log(error.message);
-            setbtnLoading(false)
+            toast.error(error.message);
+            setbtnLoading(false);
         }
     }
+    
 
     async function resendOtp() {
         try {
@@ -159,7 +210,7 @@ export const UserProvider = ({ children }) => {
     return <UserContext.Provider value={{ registerUser, user, isAuth, 
     btnLoading, loading, loginUser, logoutUser, addToPlaylist, 
     verifyEmailUser,resendOtp, addProfile, addToHistory, deleteRecentSong,
-    selectedJob, setSelectedJob,handleApply, }}>
+    selectedJob, setSelectedJob,handleApply,totalusers, onlineUsers, fetchTotalUsers }}>
         {children}
     </UserContext.Provider>
 };

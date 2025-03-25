@@ -37,7 +37,6 @@ const Navbar = () => {
                 <li onClick={() => navigate("/my-profile")} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li>
                 <a href='https://warehouse.appilix.com/uploads/app-apk-67a2f058e5806-1738731608.apk' className='py-1 px-2 rounded-full hidden md:block hover:bg-black hover:text-white cursor-pointer pr-10' >Install App</a>
               </li>
-              {/* <li onClick={()=> navigate('/my-profile')} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>My Profile</li> */}
               <li onClick={logoutUser} className='py-1 px-2 rounded-full hover:bg-black hover:text-white cursor-pointer pr-10'>Logout</li>
             </ul>
           </div>
@@ -62,10 +61,9 @@ const Navbar = () => {
             <p>Back</p>
           </div>
           <p onClick={() => navigate("/my-profile")} className='py-2 text-white ml-2 mr-2  pl-6 border'>My Profile</p>
-          {/* <p onClick={() => setVisible(false)} className='py-2 pl-6 border'></p> */}
           {
             user && user.role === "admin" ? (
-              <p onClick={() => navigate("/admin")} className='pl-6 text-white ml-2 mr-2 border py-2 cursor-pointer md:hidden'>AdminPanel</p>
+              <p onClick={() => navigate("/admins/*")} className='pl-6 text-white ml-2 mr-2 border py-2 cursor-pointer md:hidden'>AdminPanel</p>
             ) : ""
           }
           <Link to={'/contact'} onClick={() => setVisible(false)} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Contact</Link>

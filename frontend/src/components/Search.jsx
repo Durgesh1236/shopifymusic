@@ -8,7 +8,7 @@ import { UserData } from '../context/User';
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSongs, setFilteredSongs] = useState([]);
-  const { song, setSelectedSong, setIsPlaying } = SongData();
+  const { song, setSelectedSong, setIsPlaying , album} = SongData();
   const { addToHistory } = UserData();
 
   const handleSearchChange = (e) => {
@@ -18,8 +18,12 @@ const Search = () => {
     if (query) {
       const results = song.filter((song) =>
         song.title.toLowerCase().includes(query.toLowerCase())
+      ) ; 
+      const result = song.filter((song) =>
+        song.singer.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredSongs(results);
+      setFilteredSongs(result)
     } else {
       setFilteredSongs([]);
     }

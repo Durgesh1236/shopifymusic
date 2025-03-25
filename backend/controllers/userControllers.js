@@ -65,6 +65,9 @@ export const loginUser = TryCatch(async(req, res) => {
    });
 } 
     generateToken(user._id, res)
+    user.isOnline = true;
+    await user.save();
+
     res.status(200).json({
       success: true,
         user,
@@ -80,6 +83,12 @@ export const myProfile = TryCatch(async(req,res) => {
 
 export const logoutUser = TryCatch(async(req,res) => {
     res.cookie("token","", {maxAge: 0});
+
+    const user = await User.findById(req.user._id);
+    if (user) {
+        user.isOnline = false;
+        await user.save();
+    }
 
      res.json({
         message: "Logged Out Successfully",
@@ -209,7 +218,6 @@ export const sendVerifyOtp = async (req, res)=>{
    }
 }
 
-// send password reset otp
 export const sendResetOtp = async (req, res) => {
    const { email } = req.body;
    if(!email){
@@ -391,5 +399,33 @@ export const deleteRecentSong = TryCatch(async (req, res) => {
 
    res.json({
        message: "Recent Song Deleted",
+   });
+});
+
+export const getTotalUsers = TryCatch(async (req, res) => {
+   try {
+     const totalUsers = await User.countDocuments();
+ 
+     return res.status(200).json({
+       success: true,
+       totalUsers,
+       message: "Total users count fetched successfully",
+     });
+   } catch (error) {
+     return res.status(500).json({
+       success: false,
+       message: error.message,
+     });
+   }
+ }); 
+
+ export const getOnlineUsers = TryCatch(async (req, res) => {
+   const onlineUsers = await User.find({ isOnline: true }).select('name email');
+   const count = onlineUsers.length;
+
+   res.json({
+       success: true,
+       count,
+       users: onlineUsers
    });
 });
