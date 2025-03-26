@@ -61,30 +61,18 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* <div className='flex items-center overflow-auto gap-2 mt-4'>
-        <p onClick={() => navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>Home</p>
-        <p onClick={() => navigate('/music')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
-        <p onClick={() => navigate('/videos')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Videos</p>
-        <p onClick={() => navigate("/search")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>Search</p>
-        <p onClick={() => navigate("/about")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>About</p>
-        <p onClick={() => navigate("/contact")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Contact</p>
-        <p onClick={() => navigate("/career")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Career</p>
-        <p onClick={() => navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
-      </div> */}
-
-<div className="flex items-center overflow-auto gap-2 mt-4">
-      {menuItems.map((item) => (
-        <p
-          key={item.path}
-          onClick={() => navigate(item.path)}
-          className={`px-4 py-1 rounded-2xl cursor-pointer ${
-            activePath === item.path ? "bg-white text-black" : "bg-black text-white"
-          } ${item.hidden || ""}`}
-        >
-          {item.name}
-        </p>
-      ))}
-    </div>
+      <div className="flex items-center overflow-auto gap-2 mt-4">
+        {menuItems.map((item) => (
+          <p
+            key={item.path}
+            onClick={() => navigate(item.path)}
+            className={`px-4 py-1 rounded-2xl cursor-pointer ${activePath === item.path ? "bg-white text-black" : "bg-black text-white"
+              } ${item.hidden || ""}`}
+          >
+            {item.name}
+          </p>
+        ))}
+      </div>
 
       <div className={`absolute z-20 top-0 bottom-0 left-0 overflow-hidden bg-black transition-all ${visible ? 'w-full' : 'w-0'}`}>
         <div className='flex flex-col text-gray-600 rounded-2xl'>
@@ -105,7 +93,7 @@ const Navbar = () => {
             className='py-2 text-white ml-2 mr-2 border flex pl-6 px-2 cursor-pointer pr-10' >Install App
             <MdInstallMobile className='mt-1 ml-1' />
           </a>
-          <Link onClick={() => {setVisible(false); logoutUser;}} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Logout</Link>
+          <Link onClick={() => { setVisible(false); logoutUser; }} className='py-2 pl-6 text-white ml-2 mr-2 border cursor-pointer'>Logout</Link>
 
           <p className='text-center mt-5 text-white text-2xl mb-2'>Our Best Website...</p>
           <Link to={'/shopify/forever'} onClick={() => setVisible(false)} className='py-2 flex pl-6 text-white ml-2 mr-2 border cursor-pointer'>
