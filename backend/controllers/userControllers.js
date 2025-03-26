@@ -27,17 +27,6 @@ import { RESET_EMAIL_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE, WELCOME_MESSAGE } fr
             password: hashPassword,
         });
         generateToken(user._id, res);
-
-         //Sending welcome email
-   //    const mailOptions = {
-   //      from: process.env.SENDER_EMAIL,
-   //      to: email,
-   //      subject: 'Welcome to ShopifyMusic',
-   //    //   text: `Hello ${name}, Welcome to shopifymusic website. Your account has been created with email id: ${email}`
-   //       html: WELCOME_MESSAGE.replace("Name", name)
-   //   }
-   //   await transporter.sendMail(mailOptions);
-
     
        return res.status(201).json({
             user,

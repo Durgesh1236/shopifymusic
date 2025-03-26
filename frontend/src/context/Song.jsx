@@ -25,6 +25,8 @@ export const SongProvider = ({ children }) => {
         const [duration, setDuration] = useState(0);
     const audioRef = useRef(null);
     const intervalRef = useRef(null);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredSongs, setFilteredSongs] = useState([]);
  
     async function fetchSong() {
         try {
@@ -331,7 +333,11 @@ export const SongProvider = ({ children }) => {
         setProgress,
         duration,
         setDuration,
-        handleProgressChange
+        handleProgressChange,
+        searchQuery, 
+        setSearchQuery,
+        filteredSongs,
+        setFilteredSongs
     }}>
         {children}
     </SongContext.Provider>

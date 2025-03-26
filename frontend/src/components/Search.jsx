@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { assets } from '../assets/assets';
 import { SongData } from '../context/Song';
 import Layout from './Layout';
@@ -6,10 +6,13 @@ import { FaMicrophone } from "react-icons/fa";
 import { UserData } from '../context/User';
 
 const Search = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredSongs, setFilteredSongs] = useState([]);
-  const { song, setSelectedSong, setIsPlaying , album} = SongData();
+  
+  const {song, 
+    setSelectedSong, 
+    setIsPlaying, fetchSong, searchQuery, setSearchQuery, filteredSongs, setFilteredSongs} = SongData();
   const { addToHistory } = UserData();
+
+  // console.log(filteredSongs)
 
   const handleSearchChange = (e) => {
     const query = e.target.value;
@@ -18,12 +21,8 @@ const Search = () => {
     if (query) {
       const results = song.filter((song) =>
         song.title.toLowerCase().includes(query.toLowerCase())
-      ) ; 
-      const result = song.filter((song) =>
-        song.singer.toLowerCase().includes(query.toLowerCase())
-      );
+      ); 
       setFilteredSongs(results);
-      setFilteredSongs(result)
     } else {
       setFilteredSongs([]);
     }
@@ -119,7 +118,6 @@ const Search = () => {
         console.log('Speech recognition ended.');
     };
 };
-
 
   return (
     <Layout className="text-center">

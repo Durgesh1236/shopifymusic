@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { UserData } from '../context/User';
 import { GoArrowRight } from "react-icons/go";
 import { GoArrowLeft } from "react-icons/go";
@@ -14,6 +14,24 @@ const Navbar = () => {
   const menuvisible = () => {
     setVisible(true);
   };
+
+  const location = useLocation();
+  const [activePath, setActivePath] = useState(location.pathname);
+
+  useEffect(() => {
+    setActivePath(location.pathname);
+  }, [location]);
+
+  const menuItems = [
+    { name: "Home", path: "/" },
+    { name: "Music", path: "/music" },
+    { name: "Videos", path: "/videos" },
+    { name: "Search", path: "/search", hidden: "md:hidden" },
+    { name: "About", path: "/about", hidden: "hidden md:block" },
+    { name: "Contact", path: "/contact", hidden: "hidden md:block" },
+    { name: "Career", path: "/career", hidden: "hidden md:block" },
+    { name: "PlayList", path: "/playlist", hidden: "md:hidden" },
+  ];
 
   return (
     <>
@@ -43,7 +61,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className='flex items-center overflow-auto gap-2 mt-4'>
+      {/* <div className='flex items-center overflow-auto gap-2 mt-4'>
         <p onClick={() => navigate("/")} className='bg-white text-black px-4 py-1 rounded-2xl cursor-pointer'>Home</p>
         <p onClick={() => navigate('/music')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Music</p>
         <p onClick={() => navigate('/videos')} className='bg-black px-4 py-1 rounded-2xl cursor-pointer'>Videos</p>
@@ -52,7 +70,21 @@ const Navbar = () => {
         <p onClick={() => navigate("/contact")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Contact</p>
         <p onClick={() => navigate("/career")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer hidden md:block'>Career</p>
         <p onClick={() => navigate("/playlist")} className='bg-black px-4 py-1 rounded-2xl cursor-pointer md:hidden'>PlayList</p>
-      </div>
+      </div> */}
+
+<div className="flex items-center overflow-auto gap-2 mt-4">
+      {menuItems.map((item) => (
+        <p
+          key={item.path}
+          onClick={() => navigate(item.path)}
+          className={`px-4 py-1 rounded-2xl cursor-pointer ${
+            activePath === item.path ? "bg-white text-black" : "bg-black text-white"
+          } ${item.hidden || ""}`}
+        >
+          {item.name}
+        </p>
+      ))}
+    </div>
 
       <div className={`absolute z-20 top-0 bottom-0 left-0 overflow-hidden bg-black transition-all ${visible ? 'w-full' : 'w-0'}`}>
         <div className='flex flex-col text-gray-600 rounded-2xl'>
