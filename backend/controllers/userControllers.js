@@ -303,8 +303,8 @@ export const uploadImage = TryCatch(async (req, res) => {
    const compressedImage = await sharp(file.buffer)
         .rotate()
        .resize(500, 500) 
-       .png({ quality: 80 })
-       .jpeg({ quality: 80 }) 
+       .png({ quality: 60 })
+       .jpeg({ quality: 60 }) 
        .toBuffer();
 
    const fileUrl = getDataurl({ ...file, buffer: compressedImage });
