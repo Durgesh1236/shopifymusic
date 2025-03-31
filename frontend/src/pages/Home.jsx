@@ -59,6 +59,23 @@ const Home = () => {
         </div>
 
         <div className="mb-4">
+          <h1 className="my-5 font-bold text-2xl">Best Bhakti Song Album</h1>
+          <div className="flex overflow-auto">
+            {album
+              .filter((album) => album.description === "Bhakti Song Album")
+              .map((item, index) => (
+                <AlbumItem
+                  key={index}
+                  name={item.title}
+                  desc={item.description}
+                  id={item._id}
+                  image={item.thumbnail.url}
+                />
+              ))}
+          </div>
+        </div>
+
+        <div className="mb-4">
           <h1 className="my-5 font-bold text-2xl">Best Movies Songs For You</h1>
           <div className="flex overflow-auto">
             {album
@@ -157,6 +174,21 @@ const Home = () => {
           <div className='flex overflow-auto'>
             {song
               .filter((song) => song.description === "New Song")
+              .map((item, index) => (
+                <SongItem key={index} 
+                name={item.title} 
+                // desc={item.description} 
+                image={item.thumbnail.url} 
+                id={item._id} />
+              ))}
+          </div>
+        </div>
+
+        <div className='mb-4'>
+          <h1 className='my-5 font-bold text-2xl'>Best Maa Durga Bhakti Song</h1>
+          <div className='flex overflow-auto'>
+            {song
+              .filter((song) => song.description === "Durgaji Song")
               .map((item, index) => (
                 <SongItem key={index} 
                 name={item.title} 
