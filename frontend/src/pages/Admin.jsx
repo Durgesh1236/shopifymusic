@@ -5,7 +5,7 @@ import { SongData } from '../context/Song';
 import { MdDelete } from "react-icons/md";
 
 const Admin = () => {
-  const { user } = UserData();
+  const { user } = UserData(); 
   const { album, song, addAlbum, loading, addSong, addThumbnail, deleteSong, deleteAlbum, Videosong, addVideoSong,addVideoThumbnail } = SongData();
   const navigate = useNavigate();
 
