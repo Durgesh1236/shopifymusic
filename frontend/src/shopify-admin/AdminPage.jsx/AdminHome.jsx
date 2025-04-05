@@ -7,6 +7,7 @@ import ListAlbum from './ListAlbum';
 import ListSong from './ListSong';
 import Userdata from './UserAlldata'
 import AdminNavbar from '../AdminCompo/AdminNav';
+import EmailRoleForm from './AdminRole';
 
 
 const AdminHome = () => {
@@ -16,13 +17,14 @@ const AdminHome = () => {
       <Sidebar />
       <div className="flex-1 h-screen overflow-y-scroll bg-[#F3FFF7]">
       <AdminNavbar/>
-        <div className="PT-8 pl-5 sm:pt-12 sm:pl-12">
+        <div className="pt-8 pl-5 sm:pt-12 sm:pl-12">
           <Routes>
           <Route path='user-data' element={<Userdata />} />
             <Route path='add-song' element={<AddSong />} />
             <Route path='add-album' element={<AddAlbum />} />
             <Route path='list-album' element={<ListAlbum />} />
             <Route path='list-song' element={<ListSong />} />
+            <Route path='role-admin' element={<EmailRoleForm/>}/>
           </Routes>
         </div>
       </div>

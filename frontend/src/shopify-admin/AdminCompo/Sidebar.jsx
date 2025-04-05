@@ -4,6 +4,9 @@ import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom'
 import { IoIosHome } from "react-icons/io";
 import { FaDatabase } from "react-icons/fa";
+import { IoIosAlbums } from "react-icons/io";
+import { GiLoveSong, GiZeusSword } from "react-icons/gi";
+import { GrUserAdmin } from "react-icons/gr";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -25,18 +28,23 @@ const Sidebar = () => {
             <p className='hidden sm:block'>All Data</p>
         </div>
 
+        <div onClick={() => handleNavigate('role-admin')} className="flex items-center gap-2.5 cursor-pointer text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">
+        <GrUserAdmin className='w-5 text-xl'/>
+            <p className='hidden sm:block'>Admin Permission</p>
+        </div>
+
         <div onClick={() => handleNavigate('add-song')} className="flex items-center gap-2.5 cursor-pointer text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">
             <img src={assets.add_song} className='w-5 ' alt="" />
             <p className='hidden sm:block'>Add Song</p>
         </div>
 
         <div onClick={()=>handleNavigate('list-song')} className="flex items-center cursor-pointer gap-2.5 text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">
-            <img src={assets.song_icon} className='w-5 ' alt="" />
+            <GiLoveSong className='text-2xl'/>
             <p className='hidden sm:block'>List Song</p>
         </div>
 
         <div onClick={()=>handleNavigate('add-album')} className="flex items-center cursor-pointer gap-2.5 text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">
-            <img src={assets.add_album} className='w-5 ' alt="" />
+            <IoIosAlbums className='text-xl'/>
             <p className='hidden sm:block'>Add Album</p>
         </div>
 

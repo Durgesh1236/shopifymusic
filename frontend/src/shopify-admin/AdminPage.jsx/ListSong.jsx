@@ -19,7 +19,7 @@ const ListSong = () => {
   <div className="w-16 h-16 place-self-center border-4 border-gray-400 border-t-green-800 rounded-full animate-spin"></div>
 </div> : (
     <div className='md:mb-24 mb-24 mt-8 md:mt-0'>
-      <p>All Songs List</p>
+      <p>All Songs = ({song.length})</p>
       <br/>
       <div>
         <div className='sm:grid hidden grid-cols-[0.5fr_1fr_2fr__1fr_0.5fr] items-center gap-2.5 p-3 border border-gray-300 text-sm mr-5 bg-gray-100'>

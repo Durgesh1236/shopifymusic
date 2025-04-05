@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
     const [selectedJob, setSelectedJob] = useState(null);
     const [totalusers, setTotalUsers] = useState(0);
     const [onlineUsers, setOnlineUsers] = useState(0);
+    const [Admins, setAdmin] = useState([]);
 
     async function registerUser(name, email, password, navigate) {
         setbtnLoading(true)
@@ -59,9 +60,9 @@ export const UserProvider = ({ children }) => {
           console.error("Error fetching total users:", error);
         }
       };
-      useEffect(()=>{
+    //   useEffect(()=>{
         fetchTotalUsers();
-      },[])
+    //   },[])
 
     async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
         setbtnLoading(true);
@@ -84,18 +85,47 @@ export const UserProvider = ({ children }) => {
                 }
     
             } else {
-                toast.error(data.message);
+                console.error(data.message);
                 setbtnLoading(false);
             }
     
         } catch (error) {
             console.log(error.message);
-            toast.error(error.message);
+            // toast.error(error.message);
             setbtnLoading(false);
         }
     }
-    
 
+    async function AdminRole(email, role, setEmail, setRole) {
+        setLoading(true)
+        try {
+            const {data} = await axios.post("/api/user/admin/role", {email, role})
+          if(data.success){
+            toast.success(data.message)
+            setEmail("");
+            setRole("user")
+            setLoading(false)
+        } else {
+            toast.error(data.message)
+            setLoading(false)
+        } 
+        } catch (error) {
+            console.log(error.message)
+            // toast.error(error.message)
+            setLoading(false)
+        }   
+    }
+
+    async function AllAdmin() {
+        try {
+            const {data} = await axios.get("/api/user/all-admins");
+            setAdmin(data.admins)
+        } catch (error) {
+            console.log(error.message)
+            // toast.error(error.message)
+        }
+    }
+    
     async function resendOtp() {
         try {
             const { data } = await axios.post("/api/user/send-verify-otp");
@@ -181,12 +211,14 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         fetchUser();
+        fetchTotalUsers();
+        AllAdmin();
     }, []);
 
     return <UserContext.Provider value={{ registerUser, user, isAuth, 
     btnLoading, loading, loginUser, logoutUser, addToPlaylist, 
     verifyEmailUser,resendOtp, addProfile, addToHistory, deleteRecentSong,
-    selectedJob, setSelectedJob,handleApply,totalusers, onlineUsers, fetchTotalUsers }}>
+    selectedJob, setSelectedJob,handleApply,totalusers, onlineUsers, fetchTotalUsers, AdminRole, Admins, AllAdmin }}>
         {children}
     </UserContext.Provider>
 };

@@ -1,5 +1,6 @@
 import express from "express";
 import {  
+     AllAdmin,
      deleteRecentSong,
      getOnlineUsers,
      getTotalUsers,
@@ -7,6 +8,7 @@ import {
      loginUser, logoutUser, 
      myProfile, registerUser, 
      resetPassword, 
+     RoleAdmin, 
      saveToHistory, 
      saveToPlaylist, sendResetOtp, 
      sendVerifyOtp, uploadImage, 
@@ -28,7 +30,9 @@ router.post("/send-reset-otp", sendResetOtp);
 router.post("/reset-password", resetPassword);
 router.post("/:id",isAuth, uploadFile, uploadImage);
 router.post("/save-history/:id", isAuth, saveToHistory);
+router.post("/admin/role", isAuth, RoleAdmin);
 router.delete("/recent-delete/:id", isAuth, deleteRecentSong);
 router.get("/total-users", isAuth, getTotalUsers);
 router.get("/online-users", isAuth, getOnlineUsers);
+router.get("/all-admins", isAuth, AllAdmin)
 export default router;

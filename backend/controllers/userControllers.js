@@ -405,3 +405,30 @@ export const getTotalUsers = TryCatch(async (req, res) => {
        users: onlineUsers
    });
 });
+
+export const RoleAdmin = TryCatch(async(req, res)=>{
+   const { email, role } = req.body;
+   const user = await User.findOne({email});
+   if(!user){
+      return res.json({
+         success: false,
+         message: "User Does Not Exist!"
+      })
+   }
+
+   user.role = role;
+   await user.save();
+   return res.json({
+      success: true,
+      message: "Admin Role Updated!"
+   })
+ });
+
+ export const AllAdmin = TryCatch(async(req, res)=>{
+   const admins = await User.find({ role: "admin" });
+   return res.json({
+      success: true,
+      admins,
+      message: "fetch all data"
+   })
+ })
