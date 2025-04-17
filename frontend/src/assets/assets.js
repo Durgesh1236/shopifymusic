@@ -28,6 +28,7 @@ import add_song from './add_song.png'
 import song_icon from './song_icon.png'
 import album_icon from './album_icon.png'
 import upload_song from './upload_song.png'
+import background from './background.jpg'
 
 export const assets = {
   bell_icon,
@@ -59,5 +60,6 @@ export const assets = {
   add_song,
   song_icon,
   album_icon,
-  upload_song
+  upload_song,
+  background
 };

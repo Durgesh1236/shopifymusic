@@ -22,7 +22,6 @@ import ApplyFormJob from './pages/ApplyFormJob'
 import Videos from './pages/Videos'
 import Player from './components/Player'
 import AdminHome from './shopify-admin/AdminPage.jsx/AdminHome'
-import AddSong from './shopify-admin/AdminPage.jsx/AddSong'
 
 const App = () => {
   const { loading, user, isAuth } = UserData()

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import Layout from '../components/Layout'
 import { SongData } from '../context/Song'
-// import { useParams } from 'react-router-dom';
-// import { assets } from '../assets/assets';
 import { FaBookmark } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa6';
 import { UserData } from '../context/User';
@@ -11,10 +9,6 @@ const Music = () => {
 
   const { albumSong, setSelectedSong, setIsPlaying, song } = SongData();
   const { addToPlaylist } = UserData();
-
-//   useEffect(() => {
-//     fetchAlbumSong(params.id);
-//   }, [params.id]);
 
   const onclickHandler = (id) => {
     setSelectedSong(id);

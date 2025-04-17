@@ -53,16 +53,12 @@ export const UserProvider = ({ children }) => {
         try {
           const { data } = await axios.get("/api/user/total-users");
           const resOnlineUsers = await axios.get('/api/user/online-users');
-        
             setTotalUsers(data.totalUsers);
             setOnlineUsers(resOnlineUsers.data.count)
         } catch (error) {
           console.error("Error fetching total users:", error);
         }
       };
-    //   useEffect(()=>{
-        fetchTotalUsers();
-    //   },[])
 
     async function loginUser(email, password, navigate, fetchSong, fetchAlbums) {
         setbtnLoading(true);
@@ -86,6 +82,7 @@ export const UserProvider = ({ children }) => {
     
             } else {
                 console.error(data.message);
+                toast.error(data.message)
                 setbtnLoading(false);
             }
     
@@ -159,7 +156,7 @@ export const UserProvider = ({ children }) => {
             setLoading(false);
         } catch (error) {
             console.log(error);
-            setisAuth(false);
+            // setisAuth(false);
             setLoading(false);
         }
     }
@@ -197,8 +194,7 @@ export const UserProvider = ({ children }) => {
     async function addToPlaylist(id) {
         try {
             const { data } = await axios.post("/api/user/song/" + id);
-
-           toast.success(data.message);
+            toast.success(data.message);
             fetchUser();
         } catch (error) {
     toast.error(error.response.data.message);

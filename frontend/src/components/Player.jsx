@@ -7,12 +7,12 @@ import { UserData } from '../context/User';
 
 const Player = () => {
   const { singlesong, fetchSingleSong,
-    selectedSong, isPlaying, setIsPlaying,
+    selectedSong, isPlaying,
     previousMusic, nextMusic, handlePlayPause,
-    audioRef, bgcolor, setBgColor,
-    volume, setVolume, handleVolumeChange,
-    generateRandomColor, progress, setProgress,
-    duration, setDuration, handleProgressChange } = SongData();
+    audioRef, bgcolor,
+    volume, handleVolumeChange,
+    generateRandomColor, progress,
+    duration, handleProgressChange } = SongData();
   const { addToHistory } = UserData();
   // const intervalRef = useRef(null); 
 

@@ -3,13 +3,14 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserData } from '../context/User'
 import { SongData } from '../context/Song'
+import { assets } from '../assets/assets'
 
 const Register = () => {
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { fetchSong, fetchAlbums } = SongData();
+    // const { fetchSong, fetchAlbums } = SongData();
     const { registerUser, btnLoading } = UserData();
     const navigate = useNavigate()
 
@@ -19,7 +20,8 @@ const Register = () => {
     }
 
     return (
-        <div className='flex items-center justify-center h-screen max-h-screen'>
+        <div className='flex items-center justify-center h-screen max-h-screen bg-no-repeat bg-cover bg-center'
+        style={{ backgroundImage: `url(${assets.background})`}}>
             <div className=" text-white max-w-md bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
                 <h2 className='text-3xl font-semibold text-center mb-8'>Register to Shopify</h2>
 

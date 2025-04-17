@@ -10,7 +10,7 @@
     "build": "npm install && cd frontend && npm install && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Durgesh Kumar",
   "license": "ISC",
   "description": "",
   "dependencies": {
