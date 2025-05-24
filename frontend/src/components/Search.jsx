@@ -75,8 +75,10 @@ const Search = () => {
             songName = transcript.replace("play ", "").trim();
         }
 
-        const speech = new SpeechSynthesisUtterance(`shopify play your song ${songName}`);
+        const speech = new SpeechSynthesisUtterance(`songhub play your song ${songName}`);
         speech.lang = 'en-IN';
+        speech.rate = 0.9;
+        speech.pitch = 1;
         const voices = window.speechSynthesis.getVoices();
         speech.voice = voices.find(voice => voice.name.includes("Female")) || voices[0];
         window.speechSynthesis.speak(speech);

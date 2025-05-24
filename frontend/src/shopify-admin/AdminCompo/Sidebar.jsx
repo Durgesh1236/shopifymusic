@@ -20,7 +20,7 @@ const Sidebar = () => {
       <div className='flex flex-col gap-5 mt-10'>
       <div onClick={()=> navigate('/')} className="flex mt-4 items-center gap-2.5 cursor-pointer text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">
         <IoIosHome className='w-5 text-xl'/>
-            <p className='hidden sm:block'>Shopify Home</p>
+            <p className='hidden sm:block'>Songhub</p>
         </div>
 
       <div onClick={() => handleNavigate('user-data')} className="flex items-center gap-2.5 cursor-pointer text-gray-800 bg-white border border-black p-2 pr-[max(8vw,10px)] drop-shadow-[-4px_4px_#00FF5B] text-sm font-medium">

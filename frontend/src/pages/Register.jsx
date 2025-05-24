@@ -23,7 +23,7 @@ const Register = () => {
         <div className='flex items-center justify-center h-screen max-h-screen bg-no-repeat bg-cover bg-center'
         style={{ backgroundImage: `url(${assets.background})`}}>
             <div className=" text-white max-w-md bg-slate-900 p-8 rounded-lg shadow-lg w-96 text-sm">
-                <h2 className='text-3xl font-semibold text-center mb-8'>Register to Shopify</h2>
+                <h2 className='text-3xl font-semibold text-center mb-8'>Register to Songhub</h2>
 
                 <form className='mt-8' onSubmit={submitHandler}>
 

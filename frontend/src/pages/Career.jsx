@@ -35,7 +35,7 @@ const Career = () => {
   return (
     <Layout className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white px-6 py-12">
       <div className="max-w-4xl w-full mt-4 text-center">
-        <h1 className="text-4xl font-bold text-blue-400 mb-6">Join ShopifyMusic</h1>
+        <h1 className="text-4xl font-bold text-blue-400 mb-6">Join Songhub</h1>
         <p className="text-sm mb-8">
           We're on a mission to revolutionize the music industry. Join us and help shape the future of music commerce.
         </p>
