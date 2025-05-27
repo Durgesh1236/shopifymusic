@@ -54,10 +54,10 @@ const schema = new mongoose.Schema({
             required: true,
         },
     ],
-    recentPlay: {
-        type: String,
-        required: true
-    },
+    // recentPlay: {
+    //     type: String,
+    //     required: true
+    // },
     isOnline: {
         type: Boolean,
         default: false
