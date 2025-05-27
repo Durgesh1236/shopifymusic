@@ -29,7 +29,7 @@ import song_icon from './song_icon.png'
 import album_icon from './album_icon.png'
 import upload_song from './upload_song.png'
 import background from './background.jpg'
-
+import video1 from './video.mp4'
 export const assets = {
   bell_icon,
   home_icon,
@@ -61,5 +61,6 @@ export const assets = {
   song_icon,
   album_icon,
   upload_song,
-  background
+  background,
+  video1
 };

@@ -55,8 +55,10 @@ const Player = () => {
                   src={singlesong.audio.url}
                   autoPlay={isPlaying}
                   onPlay={generateRandomColor}
+                  onEnded={() => {
+                    nextMusic();
+                  }}
                 />
-
               </>
             )}
 

@@ -39,10 +39,10 @@ export const WELCOME_MESSAGE = (Name) => `
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; background: #ffffff; padding: 20px; margin: auto; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
         <tr>
             <td style="text-align: center; padding: 20px;">
-                <img src="/backend/controllers/logo.webp" alt="ShopifyMusic Logo" style="width:50px; height:50px; margin-bottom: 20px; border-radius: 50%;">
-                <h1 style="color: #333; font-size: 26px;">Hi' ${Name} <br> 🎵 Welcome to ShopifyMusic! 🎶</h1>
+                <img src="/backend/controllers/logo.webp" alt="SongHub Logo" style="width:50px; height:50px; margin-bottom: 20px; border-radius: 50%;">
+                <h1 style="color: #333; font-size: 26px;">Hi' ${Name} <br> 🎵 Welcome to Songhub! 🎶</h1>
                 <p style="color: #555; font-size: 16px;">Thank you for joining us! Get ready to explore a world of endless music and amazing features tailored just for you.</p>
-                <a href="https://shopifymusic.onrender.com" style="display: inline-block; background: #ff6600; color: #ffffff; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; margin-top: 15px; font-size: 16px;">Start Listening</a>
+                <a href="https://songhub.in" style="display: inline-block; background: #ff6600; color: #ffffff; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-weight: bold; margin-top: 15px; font-size: 16px;">Start Listening</a>
                 <p style="color: #888; font-size: 12px; margin-top: 20px;">&copy; 2025 ShopifyMusic. All rights reserved.</p>
             </td>
         </tr>

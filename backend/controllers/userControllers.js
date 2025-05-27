@@ -367,6 +367,23 @@ export const saveToHistory = TryCatch(async(req,res) =>{
        });
 });
 
+//recent play
+export const recentPlay = TryCatch(async(req, res)=> {
+   const user = await User.findById(req.user._id);
+   if(user.recentPlay.includes(req.params.id)){
+      return res.json({
+         message: "Song already play"
+      })
+   }
+
+   user.recentPlay.push(req.params.id);
+   await user.save();
+
+   return res.json({
+           message: "Added to recent",
+       });
+})
+
 export const deleteRecentSong = TryCatch(async (req, res) => {
    const user = await User.findById(req.user._id);
    const index = user.playhistory.indexOf(req.params.id)
